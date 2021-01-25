@@ -584,9 +584,6 @@
           type !== "" && amount !== "" &&
           j === tierSchema[i].minimums.length-1 && i === tierSchema.length-1
         ) {
-          if ( $('#billingForm').length > 0 ){
-            validationMessaging($('#billingForm'),'warning','Your current payment amount helps us keep the lights on, but does not qualify you for any premium features.');
-          }
           meetsReqs = false;
           break tierLoop;
         }
