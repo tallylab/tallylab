@@ -380,7 +380,7 @@ class TallyLab {
 
     // Get ready to reload the page on the next sync
     document.addEventListener("sync", function() {
-      window.location = "/app/lab";
+      window.location = "/lab";
     });
 
     // Sync one more time

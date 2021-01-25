@@ -74,8 +74,8 @@
     if ('serviceWorker' in navigator) {
       console.log("Will the service worker register?");
       navigator.serviceWorker
-        .register('/app/service-worker.js',{
-          scope: '/app/'
+        .register('/service-worker.js',{
+          scope: '/'
         })
         .then(function(reg){
           console.log("Yes, it did.");
@@ -129,7 +129,7 @@
       if ( tl.tallies.length > 0 && ( moment().valueOf() - securityQreminderTime ) > 388800000 ) {
 
         // Show them the message
-        window.location = '/app/settings/finish.html';
+        window.location = '/settings/finish.html';
 
       }
 
@@ -138,7 +138,7 @@
     var flogParam = window.location.href.match(/(flog=)(\w*)/);
     var flog = flogParam ? flogParam[2] : localStorage.getItem('flog');
     if ( flog ){
-      $.getScript("/app/test/flim-flogs.js")
+      $.getScript("/test/flim-flogs.js")
         .done(function(script, textStatus){ runFlog(flog,'load'); })
         .fail(function(jqxhr, settings, exception){
           console.log(exception);
@@ -170,10 +170,10 @@
       + '<div id="iOSnotice">'
       + ' <p>Howdy, iOS-user!</p>'
       + ' <p>If you\'re seeing the Safari icon below in the lower righthand corner of your screen, do yourself a favor and press it.</p>'
-      + ' <p class="text-center"><img src="/app/img/ios-safari-sniff-1.png" /><p>'
+      + ' <p class="text-center"><img src="/img/ios-safari-sniff-1.png" /><p>'
       + ' <p>That will open TallyLab in a fresh browser instance rather than inside of the app you linked to us from (e.g. Gmail, Twitter, or Facebook).</p>'
       + ' <p>Otherwise, if you see a couple of squares in the lower righthand corner, like this...</p>'
-      + ' <p class="text-center"><img src="/app/img/ios-safari-sniff-2.png" /></p>'
+      + ' <p class="text-center"><img src="/img/ios-safari-sniff-2.png" /></p>'
       + ' <p>...go ahead and</p>'
       + ' <p class="text-center"><a id="clickThru" class="btn btn-lg btn-primary" href="#">click thru to TallyLab »</a></p>'
       + ' <p>Once you decide you like using TallyLab, we recommend adding it to your homescreen so you don\'t have to worry about this going forward.</p>'
@@ -220,7 +220,7 @@
 
   function buildCollectionsNav(){
 
-    if ( tl.collections.length > 0 && location.href.indexOf('/app/') !== -1 ) {
+    if ( tl.collections.length > 0 && location.href.indexOf('/') !== -1 ) {
 
       // In order to build, we must first destroy
       $('#collectionsNav .collection-nav-list ul li:not(.all)').remove();
@@ -232,7 +232,7 @@
       var linkList = [];
       _.forEach(sortedCollections,function(data,index){
         var slug = data.slug ? data.slug : data.title.replace(/\ /g,'-').toLowerCase();
-        linkList.push('<li><a href="/app/lab/index.html?collection='+slug+'">'+data.title+'</a></li>');
+        linkList.push('<li><a href="/lab/index.html?collection='+slug+'">'+data.title+'</a></li>');
       });
 
       // Append
@@ -481,8 +481,8 @@
   function redirectTo(where){
     // var urlArray = location.href.match(/[^\/]+/g); 
     // var lastStop = location.href.indexOf('index.html') !== -1 ? urlArray[urlArray.length-2] : urlArray[urlArray.length-1];
-    // window.location.href = ( lastStop === 'app' || lastStop === 'v4' ) ? where+local : '/app/'+where+local;
-    window.location.href = '/app/'+where+local;
+    // window.location.href = ( lastStop === 'app' || lastStop === 'v4' ) ? where+local : '/'+where+local;
+    window.location.href = '/'+where+local;
   }
 
   function countsByPeriod(counts,period0,value){
@@ -585,7 +585,7 @@
           j === tierSchema[i].minimums.length-1 && i === tierSchema.length-1
         ) {
           if ( $('#billingForm').length > 0 ){
-            validationMessaging($('#billingForm'),'warning','Your current payment amount helps us keep the lights on, but does not qualify you for any <a href="/app/settings/billing.html#premiumAnchor">premium features</a>.');
+            validationMessaging($('#billingForm'),'warning','Your current payment amount helps us keep the lights on, but does not qualify you for any <a href="/settings/billing.html#premiumAnchor">premium features</a>.');
           }
           meetsReqs = false;
           break tierLoop;

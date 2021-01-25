@@ -12,10 +12,10 @@
 
     <title>TallyLab</title>
 
-    <link href="/app/manifest.json" rel="manifest">
+    <link href="/manifest.json" rel="manifest">
 
     <!-- so much icon -->
-    <link href="/app/favicon.ico" rel="icon">
+    <link href="/favicon.ico" rel="icon">
     <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
     <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
     <link href="/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
@@ -24,9 +24,9 @@
     <link href="/icon-normal.png" rel="icon" sizes="128x128" />
 
     <!-- oh look actual css finally -->
-    <link href="/app/css/fonts.css" rel="stylesheet">
-    <link href="/app/css/plugins.css" rel="stylesheet">
-    <link href="/app/css/tallylab.css" rel="stylesheet">
+    <link href="/css/fonts.css" rel="stylesheet">
+    <link href="/css/plugins.css" rel="stylesheet">
+    <link href="/css/tallylab.css" rel="stylesheet">
   </head>
 
   <body class="re-encrypt">
@@ -37,7 +37,7 @@
         RE-ENCRYPTION IN PROGRESS
       </p>
 
-      <p style="margin:30px;"><img src="/app/img/tl-loading.gif" alt="loading" /></p>
+      <p style="margin:30px;"><img src="/img/tl-loading.gif" alt="loading" /></p>
 
       <p style="display:inline-block;width:320px;margin:15px;" class="alert alert-danger">
         Do not navigate away from this page or you will lose all of your data!
@@ -46,16 +46,16 @@
     </div>
 
     <!-- scripts every lab view needs -->
-    <!-- <script src="/app/js/ipfs.min.js"></script> -->
-    <!-- <script src="/app/js/orbitdb.min.js"></script> -->
-    <script src="/app/js/ipfs-api.min.js"></script>
-    <script src="/app/js/libraries.js"></script>
-    <script src="/app/js/plugins.js"></script>
-    <script src="/app/js/api.js"></script>
+    <!-- <script src="/js/ipfs.min.js"></script> -->
+    <!-- <script src="/js/orbitdb.min.js"></script> -->
+    <script src="/js/ipfs-api.min.js"></script>
+    <script src="/js/libraries.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/api.js"></script>
     <script>
 
       // Default result is to redirect user back to the security page
-      var outcome = '/app/settings/security.html';
+      var outcome = '/settings/security.html';
 
       // Have to wait for a sync event from api.js before we can actually do anything, but then...
       document.addEventListener('sync',determinePath);
@@ -64,7 +64,7 @@
       if ( !localStorage.getItem('userPublic') || !localStorage.getItem('userPrivate') || !localStorage.getItem('userSecurityVersion') ){
 
         // If not, send them back to security page
-        window.location.href = '/app/settings/security.html';
+        window.location.href = '/settings/security.html';
 
       }
 
@@ -122,7 +122,7 @@
               .then(function(res){
                 if ( !res.ok ){
                   alert('There was an error fetching your payment info from Stripe, so we can\'t re-encrypt. Please try again later.');
-                  window.location.href = "/app/settings/security.html";
+                  window.location.href = "/settings/security.html";
                 } else {
                   return res.json();
                 }
@@ -181,7 +181,7 @@
                   if ( !res.ok ){
 
                     // Redirect user to Billing after re-encrypt so they can see the messaging about what to do if their billing info was lost
-                    outcome = '/app/settings/billing.html';
+                    outcome = '/settings/billing.html';
 
                     // Remove customer ID
                     localStorage.removeItem("stripe.customer_id");

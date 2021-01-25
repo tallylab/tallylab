@@ -215,7 +215,7 @@ label.glyph-checkbox { font-weight: normal; }
   #appLoader { position: absolute; top: calc(50% - 40px); left: calc(50% - 45px); }
   #pageLoaderContainer { position:relative; width: 100%; height: calc(100vh - 178px); }
 
-  .loading { min-height: 20px; min-width: 20px; background: #fff url('/app/img/tl-loading.gif') no-repeat center center !important; }
+  .loading { min-height: 20px; min-width: 20px; background: #fff url('/img/tl-loading.gif') no-repeat center center !important; }
     .loading > * { visibility: hidden; }
   button.loading, .btn.loading { min-height: auto; min-width: auto; background-size: 20px 20px !important; color: transparent !important; }
     button.loading:hover, button.loading:focus, button.loading:active,
