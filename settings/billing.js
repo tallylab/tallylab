@@ -76,9 +76,9 @@ function loadBilling(){
     localStorage.setItem("stripe.customer_id", tl.encryption.encrypt(customer_id_from_url));
     localStorage.setItem("payment_provider","Stripe");
     if ( localStorage.getItem('enable_remote_backup') === "success" ){
-      window.location = "/app/settings/remote-backup.html";
+      window.location = "/settings/remote-backup.html";
     } else {
-      window.location = "/app/settings/billing.html";
+      window.location = "/settings/billing.html";
     }
   }
 
@@ -176,7 +176,7 @@ function loadBilling(){
     var valid = validateResetStripeIdForm();
     if ( valid.status === "success" ){
       updateStripeId(valid.term);
-      window.location = "/app/settings/billing.html";
+      window.location = "/settings/billing.html";
     }
 
     return false;

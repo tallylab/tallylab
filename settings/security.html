@@ -12,10 +12,10 @@
 
     <title>TallyLab</title>
 
-    <link href="/app/manifest.json" rel="manifest">
+    <link href="/manifest.json" rel="manifest">
 
     <!-- so much icon -->
-    <link href="/app/favicon.ico" rel="icon">
+    <link href="/favicon.ico" rel="icon">
     <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
     <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
     <link href="/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
@@ -24,9 +24,9 @@
     <link href="/icon-normal.png" rel="icon" sizes="128x128" />
 
     <!-- oh look actual css finally -->
-    <link href="/app/css/fonts.css" rel="stylesheet">
-    <link href="/app/css/plugins.css" rel="stylesheet">
-    <link href="/app/css/tallylab.css" rel="stylesheet">
+    <link href="/css/fonts.css" rel="stylesheet">
+    <link href="/css/plugins.css" rel="stylesheet">
+    <link href="/css/tallylab.css" rel="stylesheet">
   </head>
 
   <body class="identity">
@@ -41,23 +41,23 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/app/lab">
-            <img class="tl-logo" src="/app/img/TallyLabLogo.svg" /><img class="tl-title" src="/app/img/TallyLabTitle.svg" alt="TallyLab" />
+          <a class="navbar-brand" href="/lab">
+            <img class="tl-logo" src="/img/TallyLabLogo.svg" /><img class="tl-title" src="/img/TallyLabTitle.svg" alt="TallyLab" />
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="collectionsNav" class="nav navbar-nav">
             <li>
-              <a href="/app/lab">Home</a>
+              <a href="/lab">Home</a>
             </li>
             <li class="collection-nav-list dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li class="all"><a href="/app/lab/index.html?collection=all-tallies">All Tallies</a></li>
+                <li class="all"><a href="/lab/index.html?collection=all-tallies">All Tallies</a></li>
               </ul>
             </li>
             <li>
-              <a href="/app/correlator">Correlator</a>
+              <a href="/correlator">Correlator</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -67,10 +67,10 @@
             <li id="adminMenuDropdown" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-cogwheel"></span></span> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/app/settings">Settings &amp; Utilities</a></li>
-                <li><a href="/app/settings/remote-backup.html">Remote Backup</a></li>
-                <li><a href="/app/settings/billing.html">Billing</a></li>
-                <li><a href="/app/settings/security.html">Security</a></li>
+                <li><a href="/settings">Settings &amp; Utilities</a></li>
+                <li><a href="/settings/remote-backup.html">Remote Backup</a></li>
+                <li><a href="/settings/billing.html">Billing</a></li>
+                <li><a href="/settings/security.html">Security</a></li>
                 <!-- <li><a href="#">Log out</a></li> -->
               </ul>
             </li>
@@ -106,7 +106,7 @@
 
         <div class="backup-encryption-success hidden alert alert-warning">
           <p class="list-glyphicons"><span class="glyphicons glyphicons-cloud"></span> Now that we have the right keys, let's find your last backup:</p>
-          <p class="text-center"><a href="/app/settings/remote-backup.html" class="btn btn-lg btn-primary">Remote Backup &raquo;</a></p>
+          <p class="text-center"><a href="/settings/remote-backup.html" class="btn btn-lg btn-primary">Remote Backup &raquo;</a></p>
         </div>
 
         <p>TallyLab encrypts your data on your device and it stays encrypted – in transit, in the cloud, anywhere.</p>
@@ -122,7 +122,7 @@
         <p>In order to retrieve your data, we need your previous encryption keys. Please choose one of the following:</p>
 
         <p>
-          <a href="/app/settings/questions.html#returning" class="btn btn-xl btn-block btn-primary">Reconstitute Keys by Answering Our Security Questions</a>
+          <a href="/settings/questions.html#returning" class="btn btn-xl btn-block btn-primary">Reconstitute Keys by Answering Our Security Questions</a>
           <a href="#confirmImportKey" data-toggle="modal" class="btn btn-xl btn-block btn-primary">Import Keys via TXT File</a>
           <a href="#confirmPasteKey" data-toggle="modal" class="btn btn-xl btn-block btn-primary">Paste Raw Key Text</a>
         </p>
@@ -146,7 +146,7 @@
                 <p class="tl-encryption hidden collapse footnote" id="whyNotAPassword"><span>Servers full of user passwords are vulnerable to hacking, so we'd rather not ever have access to your credentials in the first place. But that means if you forget your creds, we'll have no way of restoring your account for you. If we generate a really long "password" from a series of questions whose answers are unique to you, you'll be more likely to remember it.</span></p>
                 <p class="user-encryption hidden">You can change your answers to the security questions at any time. Note that if you do, you'll lose access to any database backups made using encryption from your previous answers.</p>
               </div>
-              <p class="text-center"><a href="/app/settings/questions.html" class="btn btn-lg btn-primary"><span class="glyphicons glyphicons-notes-2"></span> Answer Some Questions</a></p>
+              <p class="text-center"><a href="/settings/questions.html" class="btn btn-lg btn-primary"><span class="glyphicons glyphicons-notes-2"></span> Answer Some Questions</a></p>
             </div>
           </div>
         </div><!-- generate keys by answering questions -->
@@ -206,7 +206,7 @@
           </div>
           <div class="modal-footer">
             <button type="reset" class="btn btn-default pull-left">Cancel</button>
-            <a href="/app/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
+            <a href="/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
           </div>
         </div>
       </div>
@@ -224,7 +224,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-            <a href="/app/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
+            <a href="/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
           </div>
         </div>
       </div>
@@ -242,7 +242,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-            <a href="/app/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
+            <a href="/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
           </div>
         </div>
       </div>
@@ -305,17 +305,17 @@
     </footer>
 
     <!-- scripts every lab view needs -->
-    <!-- <script src="/app/js/ipfs.min.js"></script> -->
-    <!-- <script src="/app/js/orbitdb.min.js"></script> -->
-    <script src="/app/js/ipfs-api.min.js"></script>
-    <script src="/app/js/libraries.js"></script>
-    <script src="/app/js/plugins.js"></script>
-    <script src="/app/js/api.js"></script>
-    <script src="/app/js/validation.js"></script>
-    <script src="/app/js/tallylab.js"></script>
+    <!-- <script src="/js/ipfs.min.js"></script> -->
+    <!-- <script src="/js/orbitdb.min.js"></script> -->
+    <script src="/js/ipfs-api.min.js"></script>
+    <script src="/js/libraries.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/validation.js"></script>
+    <script src="/js/tallylab.js"></script>
 
     <!-- scripts special to this view -->
-    <script src="/app/settings/security.js"></script>
+    <script src="/settings/security.js"></script>
 
   </body>
 

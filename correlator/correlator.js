@@ -309,7 +309,7 @@ function loadCorrelator() {
       newChartUnits = 'words';
     }
     var unitsHtml = newChartUnits.length > 0 ? ' <span class="value">'+newChartUnits+'</span> ' : ' ';
-    $('#topAxis').after('<div class="chart-row row" data-chart-index="'+newChartIndex+'" data-tally-slug="'+tally.slug+'" data-data-type="'+dataType+'" data-chart-type="'+chartType+'" data-y-units="'+newChartUnits+'" data-period="'+tally.goalPeriod+'"><div class="col-md-2 col-sm-12"><div class="chart-name vertical-align"><a class="title" href="/app/lab/index.html?tab=data&collection=all-tallies&tally='+tally.slug+'">'+tally.title+'</a>'+unitsHtml+'</div></div><div class="col-md-10 col-sm-12"><div id="'+newChartId+'" class="chart"></div></div></div>');
+    $('#topAxis').after('<div class="chart-row row" data-chart-index="'+newChartIndex+'" data-tally-slug="'+tally.slug+'" data-data-type="'+dataType+'" data-chart-type="'+chartType+'" data-y-units="'+newChartUnits+'" data-period="'+tally.goalPeriod+'"><div class="col-md-2 col-sm-12"><div class="chart-name vertical-align"><a class="title" href="/lab/index.html?tab=data&collection=all-tallies&tally='+tally.slug+'">'+tally.title+'</a>'+unitsHtml+'</div></div><div class="col-md-10 col-sm-12"><div id="'+newChartId+'" class="chart"></div></div></div>');
 
     drawCorrelator();
 
@@ -393,7 +393,7 @@ function loadCollectionCharts(){
           var newChartIndex = $('.chart-row').length+1;
           var newChartId = 'chart'+newChartIndex;
           var unitsHtml = ' <span class="value">'+chartData.yUnits+'</span>';
-          $('#bottomAxis').before('<div class="chart-row row" data-chart-index="'+newChartIndex+'" data-tally-slug="'+tally.slug+'" data-data-type="'+chartData.dataType+'" data-chart-type="'+chartType+'" data-y-units="'+chartData.yUnits+'" data-period="'+tally.goalPeriod+'"><div class="col-md-2 col-sm-12"><div class="chart-name vertical-align"><a class="title" href="/app/lab/index.html?tab=data&collection=all-tallies&tally='+tally.slug+'">'+tally.title+'</a>'+unitsHtml+'</div></div><div class="col-md-10 col-sm-12"><div id="'+newChartId+'" class="chart"></div></div></div>');
+          $('#bottomAxis').before('<div class="chart-row row" data-chart-index="'+newChartIndex+'" data-tally-slug="'+tally.slug+'" data-data-type="'+chartData.dataType+'" data-chart-type="'+chartType+'" data-y-units="'+chartData.yUnits+'" data-period="'+tally.goalPeriod+'"><div class="col-md-2 col-sm-12"><div class="chart-name vertical-align"><a class="title" href="/lab/index.html?tab=data&collection=all-tallies&tally='+tally.slug+'">'+tally.title+'</a>'+unitsHtml+'</div></div><div class="col-md-10 col-sm-12"><div id="'+newChartId+'" class="chart"></div></div></div>');
 
         }
 
@@ -412,7 +412,7 @@ function loadCollectionCharts(){
     } else {
 
       $('#linkToCorrelator').hide();
-      $('#TLcorrelator').append('<p class="alert alert-danger">Your data has to be at least a day old for us to make a chart here worth looking at. Check the Correlator for more granular options!<span style="display:block;text-align:center;"><a class="btn btn-default btn-lg" href="/app/correlator">Check the Correlator</a></p>');
+      $('#TLcorrelator').append('<p class="alert alert-danger">Your data has to be at least a day old for us to make a chart here worth looking at. Check the Correlator for more granular options!<span style="display:block;text-align:center;"><a class="btn btn-default btn-lg" href="/correlator">Check the Correlator</a></p>');
 
     }
 

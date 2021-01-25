@@ -131,7 +131,7 @@ function loadSecurity(){
 
   }); // #userKeySuccess cancel
 
-  if ( window.location.toString().indexOf('/app/settings/questions.html') !== -1 ){
+  if ( window.location.toString().indexOf('/settings/questions.html') !== -1 ){
 
     $(window.location.hash).removeClass('hidden');
 

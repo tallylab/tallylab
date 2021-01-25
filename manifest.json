@@ -5,22 +5,22 @@
   "short_name": "TallyLab",
   "description": "The ultimate data diary",
   "icons": [{
-      "src": "/app/img/TallyLabLogo.png",
+      "src": "/img/TallyLabLogo.png",
       "sizes": "64x64",
       "type": "image/png",
       "density": 2
     },{
-      "src": "/app/img/TallyLabLogo@2x.png",
+      "src": "/img/TallyLabLogo@2x.png",
       "sizes": "128x128",
       "type": "image/png",
       "density": 2
     },{
-      "src": "/app/img/TallyLabLogo144.png",
+      "src": "/img/TallyLabLogo144.png",
       "sizes": "144x144",
       "type": "image/png",
       "density": 2
     }],
-  "scope": "/app/",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#37718E",
   "background_color": "#fff"
