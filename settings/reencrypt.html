@@ -180,6 +180,9 @@
                 .then(function(res){
                   if ( !res.ok ){
 
+                    // Redirect user to Billing after re-encrypt so they can see the messaging about what to do if their billing info was lost
+                    outcome = '/settings/billing.html';
+
                     // Remove customer ID
                     localStorage.removeItem("stripe.customer_id");
 
