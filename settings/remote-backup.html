@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <base href="/"><script>if ( location.href.indexOf('ipfs') !== -1 ){ var ipfsBase = location.href.match(/([^/]*\/){5}/)[0]; document.getElementsByTagName('base')[0].href = ipfsBase; } </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Your data, your insight.">
+    <meta name="author" content="TallyLab, LLC">
+
+    <title>TallyLab</title>
+
+    <link href="/app/manifest.json" rel="manifest">
+
+    <!-- so much icon -->
+    <link href="/app/favicon.ico" rel="icon">
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+    <link href="/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+    <link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/icon-hires.png" rel="icon" sizes="192x192" />
+    <link href="/icon-normal.png" rel="icon" sizes="128x128" />
+
+    <!-- oh look actual css finally -->
+    <link href="/app/css/fonts.css" rel="stylesheet">
+    <link href="/app/css/plugins.css" rel="stylesheet">
+    <link href="/app/css/tallylab.css" rel="stylesheet">
+  </head>
+
+  <body class="settings">
+
+  <!-- Top Nav -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="wrapper">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/app/lab">
+            <img class="tl-logo" src="/app/img/TallyLabLogo.svg" /><img class="tl-title" src="/app/img/TallyLabTitle.svg" alt="TallyLab" />
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="collectionsNav" class="nav navbar-nav">
+            <li>
+              <a href="/app/lab">Home</a>
+            </li>
+            <li class="collection-nav-list dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="all"><a href="/app/lab/index.html?collection=all-tallies">All Tallies</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/app/correlator">Correlator</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="noteMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-bell"></span></span> <span class="caret"></span></a>
+            </li>
+            <li id="adminMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-cogwheel"></span></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/app/settings">Settings &amp; Utilities</a></li>
+                <li><a href="/app/settings/remote-backup.html">Remote Backup</a></li>
+                <li><a href="/app/settings/billing.html">Billing</a></li>
+                <li><a href="/app/settings/security.html">Security</a></li>
+                <!-- <li><a href="#">Log out</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+  <!-- TallyLab Settings -->
+    <div id="TLbackups" class="accordion-layout wrapper">
+
+      <h1>Remote Backup</h1>
+
+      <div id="firstBackup" class="hidden">
+
+        <p>Please wait while we create your first backup. This could take a few minutes.</p>
+
+        <p class="text-center"><img src="/app/img/tl-loading.gif" /></p>
+
+      </div><!-- #firstBackup -->
+
+      <div id="restoreAccount" class="hidden">
+
+        <p>Please wait while we locate your last backup. This could take a few minutes.</p>
+
+        <p class="text-center"><img src="/app/img/tl-loading.gif" /></p>
+
+      </div><!-- #restoreAccount -->
+
+      <div id="noSuchBackup" class="alert alert-warning hidden">
+
+        <p>We have no backup that matches your public encryption key. If you're sure we have the right key, click to retry. Otherwise, click to update your keys by importing a keyfile or answering our security questions.</p>
+
+        <p class="text-center">
+          <a href="#" onclick="window.location.reload();return false;" class="btn btn-lg btn-default">Retry <span class="glyphicons glyphicons-refresh"></span></a>
+          <a href="/app/settings/security.html" data-toggle="modal" class="btn btn-lg btn-primary">Update Security Keys &raquo;</a>
+        </p>
+
+      </div><!-- #noSuchBackup -->
+
+      <div id="gotBackups" class="hidden">
+
+        <p class="alert alert-warning last-backup"></p>
+
+        <p class="text-center">
+          <a href="#confirmRestore" data-toggle="modal" class="btn btn-lg btn-block btn-danger"><span class="glyphicons glyphicons-cloud-download"></span> Restore data to last backup</a>
+        </p>
+
+        <p class="text-center">
+          <a href="#" id="backupNow" class="btn btn-lg btn-block btn-primary hidden"><span class="glyphicons glyphicons-cloud-upload"></span> Create new backup (takes ~2 mins)</a>
+        </p>
+
+      </div><!-- #gotBackups -->
+
+      <div id="mysteryVisitor" class="hidden">
+
+        <p class="alert alert-warning">We're working on your first backup. Check back!</p>
+
+        <hr />
+
+      </div><!-- #mysteryVisitor -->
+
+      <hr />
+
+      <p><a href="#remoteBackupPolicy" role="button" data-toggle="collapse" aria-expanded="false" class="plus-toggle">Remote Backup Policy & Security</a></p>
+      <div id="remoteBackupPolicy" class="collapse">
+        <p>We automatically backup your tallies and collections to our cloud at most every 12 hours. If you aren't active in the app for over 12 hours, we'll backup once you become active again.</p>
+        <p>Backups of your data remain encrypted while in transit and in our cloud. Because your data is encrypted, we cannot see into your backups to find out what you're tallying, how many counts are in which tallies, what collections you have, etc. We also cannot connect any given backup to you specifically &mdash; we just see a list of backups with unintelligible names.</p>
+      </div>
+
+    </div><!-- #TLbackups -->
+
+  <!-- App Footer -->
+    <footer class="footer">
+      <div class="wrapper text-right">
+        <p class="pull-left text-muted">© TallyLab, LLC</p>
+        <p><a href="/support" target="_blank">Support</a></p>
+      </div>
+    </footer>
+
+    <!-- Confirm Restore to Backup -->
+    <div class="modal fade text-left" id="confirmRestore" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Definitely overwrite current database with backup?</h4>
+          </div>
+          <div class="modal-body">
+            <p>This will overwrite all of your current data and is irreversible.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default initial" data-toggle="modal" data-target="#confirmRestore">Nevermind!</button>
+            <button type="button" class="btn btn-danger restore-to-backup"><span class="glyphicon glyphicon-hurricane"></span> Restore now</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- #confirmRestore -->
+
+    <!-- scripts every lab view needs -->
+    <!-- <script src="/app/js/ipfs.min.js"></script> -->
+    <!-- <script src="/app/js/orbitdb.min.js"></script> -->
+    <script src="/app/js/ipfs-api.min.js"></script>
+    <script src="/app/js/libraries.js"></script>
+    <script src="/app/js/plugins.js"></script>
+    <script src="/app/js/api.js"></script>
+    <script src="/app/js/validation.js"></script>
+    <script src="/app/js/tallylab.js"></script>
+
+    <!-- scripts special to this view -->
+    <script src="/app/settings/remote-backup.js"></script>
+    <script>document.addEventListener('sync',loadBackups);</script>
+  </body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <base href="/"><script>if ( location.href.indexOf('ipfs') !== -1 ){ var ipfsBase = location.href.match(/([^/]*\/){5}/)[0]; document.getElementsByTagName('base')[0].href = ipfsBase; } </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Your data, your insight.">
+    <meta name="author" content="TallyLab, LLC">
+
+    <title>TallyLab</title>
+
+    <link href="/app/manifest.json" rel="manifest">
+
+    <!-- so much icon -->
+    <link href="/app/favicon.ico" rel="icon">
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+    <link href="/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+    <link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/icon-hires.png" rel="icon" sizes="192x192" />
+    <link href="/icon-normal.png" rel="icon" sizes="128x128" />
+
+    <!-- oh look actual css finally -->
+    <link href="/app/css/fonts.css" rel="stylesheet">
+    <link href="/app/css/plugins.css" rel="stylesheet">
+    <link href="/app/css/tallylab.css" rel="stylesheet">
+  </head>
+
+  <body class="identity">
+
+  <!-- Top Nav -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="wrapper">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/app/lab">
+            <img class="tl-logo" src="/app/img/TallyLabLogo.svg" /><img class="tl-title" src="/app/img/TallyLabTitle.svg" alt="TallyLab" />
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="collectionsNav" class="nav navbar-nav">
+            <li>
+              <a href="/app/lab">Home</a>
+            </li>
+            <li class="collection-nav-list dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="all"><a href="/app/lab/index.html?collection=all-tallies">All Tallies</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/app/correlator">Correlator</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="noteMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-bell"></span></span> <span class="caret"></span></a>
+            </li>
+            <li id="adminMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-cogwheel"></span></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/app/settings">Settings &amp; Utilities</a></li>
+                <li><a href="/app/settings/remote-backup.html">Remote Backup</a></li>
+                <li><a href="/app/settings/billing.html">Billing</a></li>
+                <li><a href="/app/settings/security.html">Security</a></li>
+                <!-- <li><a href="#">Log out</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+  <!-- TallyLab Identity -->
+    <div id="TLidentity" class="accordion-layout wrapper">
+
+      <h1>Security Questions</h1>
+
+      <form id="userSecurity">
+
+        <p id="returning" class="alert alert-warning hidden">
+          Welcome back! Please answer our security questions exactly the way you did last time, so we can retrieve your data from our cloud.
+        </p>
+
+        <p id="new" class="alert alert-warning hidden">Please answer the following security questions in whatever way you'll be most likely to remember later. <strong>We don't save your answers, we only use them to generate your keys.</strong></p>
+
+        <fieldset class="card reveal-scope">
+          <label>What's the first game you ever remember playing?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q0" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Write as much of the name of the game as you know, e.g. "Hopscotch" or "Capture the Flag" or "Go Fish"</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>What is the name of the first street you remember living on?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q1" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Write out the name as fully as you can, e.g. "Elm Street" or "West Houston Street"</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>What was the name of your first friend?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q2" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Write as much of the name as you know, e.g. "Samantha Powers" or "Martin Luther King Jr." or "Javier"</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>What was the first nickname you had that more than one person called you?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q3" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Probably something at least slightly embarassing, e.g. "Applesauce"</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>What is the name of the first song you remember singing?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q3" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Write as much of the name of the song as you know, e.g. "Twinkle Twinkle Little Star" or "Tiny Dancer"</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+        <fieldset class="card reveal-scope">
+          <label>What was the first email address you remember having?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q3" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Maybe you got it at school? e.g. john.smith@ucsc.edu"</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>Where are you from?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q3" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Answer this the way you would at a party, e.g. "Ohio" or "England"</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>What was the name of the first pet you remember having?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q3" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>If you didn't have one at home, think of a classroom pet, or the name of a stuffed animal or toy you had.</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>Who taught you how to read?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q3" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Write as much of their name as you know, e.g. "Mrs. Smith" or if it was a parent, their full name.</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>Are you left-handed, right-handed, or ambidextrous?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q3" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p> </p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+        <fieldset class="card reveal-scope">
+          <label>What is your astrological sign?</label>
+            <input
+              type="text" autocapitalize="none"
+              name="q3" class="form-control reveal-trigger"
+              data-validation-type="security-question" data-required="true" data-reveal=".security-error" />
+          <div class="form-notes">
+            <p class="text-center reveal-target security-error text-danger hidden">Field is required.</p>
+            <p>Whether or not you think that means anything! ;)</p>
+          </div>
+          <p class="text-center"><button class="btn btn-default">Next Question</button></p>
+        </fieldset>
+
+      </form>
+
+    </div><!-- #TLidentity -->
+
+    <!-- Successful Key Generation Modal -->
+    <div class="modal fade" id="userKeySuccess" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content tlc-toggle tlc-standard hidden">
+          <div class="modal-header">
+            <h3 class="modal-title">One more step</h3>
+          </div>
+          <div class="modal-body">
+            <p>We've successfully generated your new keys from the answers you gave to our questions. Now we need to re-encrypt your database using the new keys. This should only take a few seconds, but <span class="glyphicons glyphicons-warning"></span> <strong>it's important that you don't navigate away from the conversion page</strong> <span class="glyphicons glyphicons-warning"></span> while it's underway.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-default pull-left">Cancel</button>
+            <a href="/app/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
+          </div>
+        </div><!-- .tlc-standard.modal-content -->
+        <div class="modal-content tlc-toggle tlc-returning hidden">
+          <div class="modal-header">
+            <h3 class="modal-title">Couple more steps</h3>
+          </div>
+          <div class="modal-body">
+            <p>We've successfully re-generated your keys from the answers you gave to our questions. Despite not having any data in here yet, we still need to send you through the re-encryption process. It's important that you don't navigate away from the conversion page white it's underway.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-default pull-left">Cancel</button>
+            <a href="/app/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
+          </div>
+        </div><!-- .tlc-returning.modal-content -->
+      </div>
+    </div>
+
+  <!-- App Footer -->
+    <footer class="footer">
+      <div class="wrapper">
+        <p class="copy-p text-muted">© TallyLab, LLC</p>
+        <p class="email-p"><a href="/support" target="_blank">Support</a></p>
+        <div class="tour-p btn-group">
+          <a class="start-tour btn btn-default hidden" href="#">Start Tour</a>
+          <a class="continue-tour btn btn-default hidden" href="#">Continue Tour</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- scripts every lab view needs -->
+    <!-- <script src="/app/js/ipfs.min.js"></script> -->
+    <!-- <script src="/app/js/orbitdb.min.js"></script> -->
+    <script src="/app/js/ipfs-api.min.js"></script>
+    <script src="/app/js/libraries.js"></script>
+    <script src="/app/js/plugins.js"></script>
+    <script src="/app/js/api.js"></script>
+    <script src="/app/js/validation.js"></script>
+    <script src="/app/js/tallylab.js"></script>
+
+    <!-- scripts special to this view -->
+    <script src="/app/settings/security.js"></script>
+
+  </body>
+
+</html>

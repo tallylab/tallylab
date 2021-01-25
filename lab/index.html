@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <base href="/"><script>if ( location.href.indexOf('ipfs') !== -1 ){ var ipfsBase = location.href.match(/([^/]*\/){5}/)[0]; document.getElementsByTagName('base')[0].href = ipfsBase; } </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Your data, your insight.">
+    <meta name="author" content="TallyLab, LLC">
+
+    <title>TallyLab</title>
+
+    <link href="/app/manifest.json" rel="manifest">
+
+    <!-- so much icon -->
+    <link href="/app/favicon.ico" rel="icon">
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+    <link href="/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+    <link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/icon-hires.png" rel="icon" sizes="192x192" />
+    <link href="/icon-normal.png" rel="icon" sizes="128x128" />
+
+    <!-- oh look actual css finally -->
+    <link href="/app/css/fonts.css" rel="stylesheet">
+    <link href="/app/css/plugins.css" rel="stylesheet">
+    <link href="/app/css/tallylab.css" rel="stylesheet">
+  </head>
+
+  <body class="collection-list">
+
+  <!-- Top Nav -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="wrapper">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/app/lab">
+            <img class="tl-logo" src="/app/img/TallyLabLogo.svg" /><img class="tl-title" src="/app/img/TallyLabTitle.svg" alt="TallyLab" />
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="collectionsNav" class="nav navbar-nav">
+            <li>
+              <a href="/app/lab">Home</a>
+            </li>
+            <li class="collection-nav-list dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="all"><a href="/app/lab/index.html?collection=all-tallies">All Tallies</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/app/correlator">Correlator</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="noteMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-bell"></span></span> <span class="caret"></span></a>
+            </li>
+            <li id="adminMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-cogwheel"></span></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/app/settings">Settings &amp; Utilities</a></li>
+                <li><a href="/app/settings/remote-backup.html">Remote Backup</a></li>
+                <li><a href="/app/settings/billing.html">Billing</a></li>
+                <li><a href="/app/settings/security.html">Security</a></li>
+                <!-- <li><a href="#">Log out</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div id="pageLoaderContainer">
+      <img id="appLoader" src="/app/img/tl-loading.gif" alt="Loading..." />
+    </div>
+
+  <!-- TallyLab Home: Choose -->
+    <div id="initialAdventure" class="hidden">
+
+      <div class="choose wrapper" data-onboard-step="0">
+
+        <h2>Hi!</h2>
+
+        <p>Please choose your own adventure:</p>
+
+        <p>
+
+          <a href="#" class="new-tallier btn btn-xl btn-block btn-primary">
+            <span class="glyphicons glyphicons-cloud"></span> New Tallier, Starting Fresh
+          </a>
+
+          <a href="#" class="returning-tallier btn btn-xl btn-block btn-danger">
+            <span class="glyphicons glyphicons-keys"></span> Returning Tallier, Logging In
+          </a>
+
+        </p>
+
+      </div><!-- .choose -->
+
+      <div class="brand-new-user hidden wrapper" data-onboard-step="1">
+
+        <h2>Welcome!</h2>
+
+        <p>We're so glad you decided to join us! What would you like to track first?</p>
+
+      </div><!-- .brand-new-user -->
+
+    </div><!-- #initial Adventure -->
+
+  <!-- TallyLab Home: User Collections -->
+    <div id="collections" class="hidden wrapper">
+
+      <h2>Your Collections</h2>
+
+      <template id="collectionTemplate">
+        <a class="btn btn-block btn-xl btn-collection" href="#">
+          <span name="title"></span>
+          <span class="badge hidden"></span>
+        </a>
+      </template>
+
+      <a class="btn btn-block btn-default btn-xl btn-collection all-tallies" href="/app/lab/index.html?collection=all-tallies">
+        <span class="glyphicons glyphicons-show-big-thumbnails"></span>
+        <span class="titlecard-title">All Tallies</span>
+      </a>
+
+      <hr />
+
+      <h4>New Collection Templates</h4>
+
+      <p>Click a template to choose which tallies to install, or "Custom" to start a new collection without any tallies.</p>
+
+    </div> <!-- #collections.wrapper -->
+
+  <!-- TallyLab Home: Collection Templates -->
+    <div id="collectionTemplates" class="hidden wrapper">
+
+      <div data-colltemp-step="0">
+
+        <p id="collectionSelection" class="rainbow-buttons">
+          <a href="#addCustomCollection" class="btn btn-xl btn-default" data-toggle="modal"><span class="glyphicons glyphicons-brush"></span> <span name="title">Custom</span></a>
+        </p>
+
+        <div class="modal fade" id="addCustomCollection" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <form class="modal-content reveal-scope">
+              <div class="modal-body">
+                <p>Give your new custom collection a name:</p>
+                <input id="collectionName" name="title" type="text" value="" class="form-control reveal-trigger" data-validation-type="collection-title" data-required="true" data-reveal=".collection-name" data-default="" />
+                <div class="form-notes">
+                  <p class="reveal-target collection-name text-danger hidden">A unique Collection Name is required.</p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="reset" class="btn btn-lg btn-default pull-left nevermind">Nevermind!</button>
+                <button type="submit" class="btn btn-lg btn-danger">Install</button>
+              </div>
+            </form>
+          </div>
+        </div><!-- #addCustomCollection -->
+
+        <div class="modal fade" id="collectionDupeWarning" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <form class="modal-content reveal-scope">
+              <div class="modal-body">
+                <p>We see you have a collection with a similar name to this one – is it possible you already installed it?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-lg btn-default">Nevermind!</button>
+                <button type="button" data-dismiss="modal" class="btn btn-lg btn-danger">Continue Anyway</button>
+              </div>
+            </form>
+          </div>
+        </div><!-- #addCustomCollection -->
+
+      </div>
+
+      <div data-colltemp-step="1" class="hidden">
+
+        <h2>Good choice!</h2>
+
+        <p>By default, the <strong name="collection-title"></strong> collection contains the following tallies. Pick which ones you'd like to install.</p>
+
+        <p class="text-right"><a id="backToCollectionTemplates" class="pull-left btn btn-default" href="#">« Back</a> <a id="toggleCheckboxButtonList" class="btn btn-primary" href="#">Toggle all</a></p>
+
+        <form id="tallySelection" class="checkbox-buttons-list">
+
+        </form>
+
+        <p><a id="installSelectedTallies" class="btn btn-block btn-xl btn-danger text-center" href="#">Install</a></p>
+
+      </div>
+
+    </div><!-- #collectionTemplates.wrapper -->
+
+    <template id="tallyBoxTemplate">
+      <div class="tally box">
+        <div class="box-content">
+          <p class="title tally-title">
+            <a class="view-data" title="View tally data" href="#">
+              <span name="title" class="truncate two-lines"></span>
+            </a>
+          </p><!-- .tally-title -->
+          <p class="tally-count">
+            <a class="sub-count text-right" href="#" title="Undo last count">
+              <span class="svg-icon svg-icon-minus">
+                <svg width="30" height="30">
+                  <polygon points="10 15,20 15,20 18,10 18,10 15" />
+                </svg>
+              </span>
+            </a>
+            <span class="count" title="Tally count"></span>
+            <a class="add-count text-left hidden" href="#" title="Add new count">
+              <span class="svg-icon svg-icon-plus">
+                <svg width="30" height="30">
+                  <polygon points="14 8,17 8,17 14,23 14,23 17,17 17,17 23,14 23,14 17,8 17,8 14,14 14,14 8" />
+                </svg>
+              </span>
+            </a>
+            <a class="start-timer text-left hidden" href="#" title="Add new count">
+              <span class="svg-icon svg-icon-play">
+                <svg width="30" height="30">
+                  <polygon points="12 9,22 16,12 23,12 9" />
+                </svg>
+              </span>
+            </a>
+            <a class="stop-timer text-left hidden" href="#" title="Add new count">
+              <span class="svg-icon svg-icon-stop">
+                <svg width="30" height="30">
+                  <polygon points="10 10,10 21,21 21,21 10,10 10" />
+                </svg>
+              </span>
+            </a>
+          </p><!-- .tally-count -->
+          <p class="tally-deets">
+            <span data-colspan="5">
+              <span class="datetime last-update hidden" title="Date of last count">&nbsp;</span>
+              <span class="datetime timer hidden" title="Current timer">
+                <span class="glyphicons glyphicons-stopwatch"></span>
+                <span class="duration">&nbsp;</span>
+              </span>
+              <span class="numeric-value hidden"></span>
+            </span>
+          </p><!-- .tally-deets -->
+          <form class="tally-number form-inline hidden">
+            <div class="form-group">
+              Add <span name="label">value</span>? <input class="form-control" type="number" value="" />
+              <a href="#" class="save"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+            </div>
+          </form><!-- .tally.number -->
+          <p class="tally-links">
+            <a class="view-stats text-left" href="#" title="View tally stats">
+              <span class="glyphicons glyphicons-charts"></span>
+            </a>
+            <span class="tally-tags" title="Tally tags">
+              <span class="truncate two-lines"></span>
+            </span>
+            <a class="view-settings text-right" href="#" title="View tally settings">
+              <span class="glyphicons glyphicons-cogwheel"></span>
+            </a>
+          </p>
+        </div><!-- .box-content -->
+      </div>
+    </template><!-- #tallyBoxTemplate -->
+
+  <!-- Collection Landing / Tally List -->
+
+    <div id="theCollection" class="hidden tab-page wrapper">
+
+      <h1>
+        <span name="title"></span>
+      </h1>
+
+      <div class="collection-tabs">
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li><a href="#" aria-controls="tallies" role="tab">Tallies</a></li>
+          <li><a href="#" aria-controls="charts" role="tab">Charts</a></li>
+          <li><a href="#" aria-controls="settings" role="tab">Settings</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+        </div>
+
+      </div><!-- .collection-tabs -->
+
+    </div><!-- #theCollection -->
+
+    <template id="collTalliesTemplate">
+      <div role="tabpanel" class="tab-pane active" id="collTallies">
+
+        <div id="tallies" class="wrapper">
+
+          <div class="text-right">
+
+            <div class="btn-group " role="group" aria-label="Options">
+
+              <div class="sorts btn-group dark" role="group">
+                <a href="#" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Sort <span class="caret"></span>
+                </a>
+                <ul id="sortTallies" class="dropdown-menu dropdown-menu-right">
+                  <li><a class="sort" href="#" data-sort-field="slug" data-sort-dir="asc">Name, ascending</a></li>
+                  <li><a class="sort" href="#" data-sort-field="slug" data-sort-dir="desc">Name, descending</a></li>
+                  <li><a class="sort" href="#" data-sort-field="counts" data-sort-dir="asc">Count, ascending</a></li>
+                  <li><a class="sort" href="#" data-sort-field="counts" data-sort-dir="desc">Count, descending</a></li>
+                  <li><a class="sort" href="#" data-sort-field="lastCount" data-sort-dir="asc">Recency, ascending</a></li>
+                  <li><a class="sort" href="#" data-sort-field="lastCount" data-sort-dir="desc">Recency, descending</a></li>
+                </ul>
+              </div><!--/ .sorts -->
+              <div class="filters btn-group dark" role="group">
+                <a href="#" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Filter <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <!--<li>
+                    <input name="nameFilter" class="form-control" type="text" placeholder="Type to filter by name" />
+                  </li>-->
+                  <li id="filterByTagName">
+
+                  </li>
+                  <li id="clearFilters">
+                    <a class="clear" href="#">Clear tag filters</a>
+                  </li>
+                </ul>
+              </div><!--/ .filters -->
+            </div>
+
+          </div>
+
+          <div class="added grid">
+
+            <div class="new tally box">
+
+              <div id="newTallyWizard" class="wizard box-content">
+
+                <span class="title"></span>
+
+                <form class="tally-settings steps">
+
+                  <div class="reveal-scope step" data-step="0">
+
+                    <a href="#" class="next titlecard" title="Start tally setup">
+
+                      <span class="titlecard-title">New Tally</span>
+
+                      <span class="titlecard-icon">+</span>
+
+                    </a>
+
+                  </div><!-- .step -->
+
+                  <div class="reveal-scope step" data-step="1">
+
+                    <h3>Tally Name</h3>
+
+                    <input id="tallyName" name="title" type="text" value="" placeholder="New Tally Name" class="form-control reveal-trigger" data-validation-type="tally-title" data-required="true" data-reveal=".tally-name" data-default="" />
+
+                    <div class="form-notes">
+                      <p class="reveal-target tally-name text-danger hidden">A unique Tally Name is required.</p>
+                    </div>
+
+                    <div class="steppers">
+                      <a href="#" class="next nav-icon" title="Next step"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+                    </div>
+
+                    <a href="#" class="cancel nav-icon" title="Cancel tally setup"><span class="glyphicon glyphicon-remove-sign"></span></a>
+
+                  </div><!-- .step -->
+
+                  <div class="reveal-scope step" data-step="2">
+
+                    <h3>Tally Goal</h3>
+
+                    <select id="tallyGoal" name="goalType" class="form-control" data-reveal="select">
+                      <option value="none" data-reveal=".none" data-exclusive="true">None</option>
+                      <option value="at-least" data-reveal=".goal" data-exclusive="true">At least</option>
+                      <option value="at-most" data-reveal=".goal" data-exclusive="true">At most</option>
+                      <option value="exact" data-reveal=".goal" data-exclusive="true">Exactly</option>
+                    </select>
+
+                    <div class="form-notes">
+                      <p class="reveal-target none">e.g. "at least 3 per day" or "at most 10 per week"</p>
+                      <fieldset class="reveal-target goal hidden">
+                        <input type="number" class="form-control" id="goalTotal" name="goalTotal" value=0 min=0 />
+                        <label for="goalPeriod" class="control-label">per</label>
+                        <select id="goalPeriod" name="goalPeriod" class="form-control">
+                          <option value="hour">Hour</option>
+                          <option value="day" selected>Day</option>
+                          <option value="week">Week</option>
+                          <option value="month">Month</option>
+                          <option value="year">Year</option>
+                          <option value="life">Lifetime</option>
+                        </select>
+                      </fieldset>
+                    </div>
+
+                    <div class="steppers">
+                      <a href="#" class="prev nav-icon" title="Previous step"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+                      <a href="#" class="next nav-icon" title="Next step"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+                    </div>
+
+                    <a href="#" class="cancel nav-icon" title="Cancel"><span class="glyphicon glyphicon-remove-sign"></span></a>
+
+                  </div><!-- goal .step -->
+
+                  <div class="reveal-scope step" data-step="3">
+
+                    <h3>Tally Timer</h3>
+
+                    <input type="checkbox" id="timer" name="timer" /> <label class="glyph-checkbox" for="timer"><span class="glyphicons"></span> Make this tally a timer</label>
+
+                    <div class="form-notes">
+                      <p>When you specify that a tally is a timer, your first tap will start the timer and your second tap will stop it.</p>
+                    </div>
+
+                    <div class="steppers">
+                      <a href="#" class="prev nav-icon" title="Previous step"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+                      <a href="#" class="next nav-icon" title="Next step"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+                    </div>
+
+                    <a href="#" class="cancel nav-icon" title="Cancel"><span class="glyphicon glyphicon-remove-sign"></span></a>
+
+                  </div><!-- timer .step -->
+
+                  <div class="reveal-scope step" data-step="4">
+
+                    <h3>Tally Value</h3>
+
+                    <input type="checkbox" id="numeric" name="numeric" data-reveal=".value-label" data-exclusive="true" /> <label class="glyph-checkbox" for="numeric"><span class="glyphicons"></span> Add numeric value to counts</label>
+
+                    <div class="form-notes">
+                      <p class="reveal-target">For each count, we'll prompt you to enter a value. E.g. for "Runs", you can specify how many miles you ran each time.</p>
+                      <fieldset class="reveal-target reveal-scope value-label hidden">
+                        <input
+                          type="text" autocapitalize="none" value="" placeholder="Value label"
+                          class="form-control" id="tallyValueLabel" name="value"
+                          data-validation-type="title" data-reveal=".value-error" data-exclusive="true" />
+                        <p class="reveal-target value-label">The label for your value will appear after each value. E.g. "3.1 miles"</p>
+                        <p class="reveal-target value-error hidden text-danger"></p>
+                      </fieldset>
+                    </div>
+
+                    <div class="steppers">
+                      <a href="#" class="prev nav-icon" title="Previous step"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+                      <a href="#" class="next nav-icon" title="Next step"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+                    </div>
+
+                    <a href="#" class="cancel nav-icon" title="Cancel"><span class="glyphicon glyphicon-remove-sign"></span></a>
+
+                  </div><!-- value .step -->
+
+                  <div class="step" data-step="5">
+
+                    <h3 for="tallyTags">Tally Tags</h3>
+
+                    <textarea id="tallyTags" rows="1" cols="100" name="tags" class="form-control"></textarea>
+
+                    <div class="form-notes">
+                      <p class="tally_tags">Separate your list of tags with a comma and a space, e.g. "health, exercise, cardio"</p>
+                    </div>
+
+                    <div class="steppers">
+                      <a href="#" class="prev nav-icon" title="Previous step"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+                      <a href="#" class="finish nav-icon" title="Finish tally setup"><span class="glyphicon glyphicon-ok-sign"></span></a>
+                    </div>
+
+                    <a href="#" class="cancel nav-icon" title="Cancel"><span class="glyphicon glyphicon-remove-sign"></span></a>
+
+                  </div><!-- tags .step -->
+
+                </form><!-- .steps -->
+
+              </div><!-- .wizard -->
+
+            </div><!-- .new.tally -->
+
+          </div><!-- .grid -->
+
+        </div> <!-- #tallies.wrapper -->
+
+      </div><!-- #collTallies -->
+    </template>
+
+
+    <template id="collChartsTemplate">
+      <div role="tabpanel" class="tab-pane active loading" id="collCharts">
+
+        <div id="TLcorrelator">
+
+          <div id="timeRangeForm" class="hidden">
+
+              <form class="form-inline">
+
+                <label>Date range:</label>
+
+                <input class="form-control" type="date" id="dateRangeStart" />
+                <!-- <input class="form-control" type="time" id="timeRangeStart" /> -->
+                <input class="form-control" type="date" id="dateRangeEnd" />
+                <!-- <input class="form-control" type="time" id="timeRangeEnd" /> -->
+
+                <button type="submit" class="btn btn-default update-dates">Update</button>
+
+              </form>
+
+          </div><!-- #timeRangeForm -->
+
+          <div id="topAxis" class="row time-axis-row">
+            <div class="col-md-2 col-sm-12"></div>
+            <div class="col-md-10 col-sm-12">
+              <div id="topAxisChart"></div>
+            </div>
+          </div>
+
+          <div id="bottomAxis" class="row time-axis-row">
+            <div class="col-md-2 col-sm-12"></div>
+            <div class="col-md-10 col-sm-12">
+              <div id="bottomAxisChart"></div>
+            </div>
+          </div>
+
+        </div><!-- #TLcorrelator -->
+
+        <p id="linkToCorrelator" class="text-center"><a class="btn btn-block btn-lg btn-primary" href="/app/correlator">For more charting options, check out the Correlator »</a></p>
+
+      </div><!-- #collCharts -->
+    </template>
+
+    <template id="collSettingsTemplate">
+      <div role="tabpanel" class="tab-pane active loading settings" id="collSettings">
+
+        <form class="collection-settings">
+          <div class="row">
+            <div class="col-md-2 col-xs-12"><strong>Edit Collection Name</strong></div>
+            <div class="col-md-10 col-xs-12">
+              <input class="form-control" type="text" name="title" value="" data-validation-type="collection-title" data-required="true" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <button class="btn btn-default" type="cancel">Cancel Edits</button>
+              <button class="btn btn-primary" type="submit">Save Edits</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <a class="btn btn-link" style="padding-left:0;" data-toggle="modal" href="#confirmDeleteCollection">
+                <span><span class="glyphicon glyphicon-trash"></span> Delete this collection</span>
+              </a>
+            </div>
+          </div>
+        </form>
+
+        <!-- Confirm Delete Collection Modal -->
+        <div class="modal fade" id="confirmDeleteCollection" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title"><span class="glyphicon glyphicon-warning-sign"></span> Definitely delete your <span class="title"></span> collection?</h4>
+              </div>
+              <div class="modal-body">
+                <p>What would you like us to do with the tallies in this collection?</p>
+                <fieldset class="radios">
+                  <label><input type="radio" name="delColTally" value="retain" checked> Keep all tallies</label><br />
+                  <label><input type="radio" name="delColTally" value="delete"> Delete all tallies</label><br />
+                  <label><input type="radio" name="delColTally" value="nother"> Delete only tallies which aren't in other collections</label><br />
+                </fieldset>
+                <p>If you choose to delete any or all of this collection's tallies, we recommend that you backup your database by downloading a .ZIP before proceeding.</p>
+              </div>
+              <div class="modal-footer">
+                <button class="pull-left btn btn-lg btn-link download-csv"><span class="glyphicon glyphicon-download"></span> Download .ZIP</button>
+                <button type="button" class="btn btn-lg btn-default">Nevermind!</button>
+                <button type="button" class="btn btn-lg btn-danger" data-pageto="home"><span class="glyphicon glyphicon-trash"></span> Delete this collection now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- #collSettings -->
+    </template>
+
+  <!-- Tally Detail -->
+
+    <div id="theTally" class="hidden tab-page wrapper">
+
+      <!-- tallyBoxTemplate (see above) -->
+
+      <div class="tally-tabs">
+
+          <div id="tallyDetailSparkline" class="flatsparkline"></div>
+
+          <ul class="nav nav-tabs" role="tablist">
+            <li><a href="#" aria-controls="data" role="tab">Data</a></li>
+            <li><a href="#" aria-controls="summary" role="tab">Stats</a></li>
+            <li><a href="#" aria-controls="settings" role="tab">Settings</a></li>
+          </ul>
+
+          <div class="tab-content">
+
+          </div>
+
+      </div><!-- .tally-tabs -->
+
+    </div><!-- #theTally -->
+
+    <template id="tallySummaryTemplate">
+
+      <!-- Custom Time Range Modal -->
+      <div class="modal fade" id="customStatsRange" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Chose a Custom Range</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <fieldset>
+                  <label for="customStatsRangeStart">Start date/time</label><br />
+                  <input type="text" name="startDate" placeholder="m/dd/yy h:mm:ss p" id="customStatsRangeStart" />
+                </fieldset>
+                <fieldset>
+                  <label for="customStatsRangeEnd">End date/time</label><br />
+                  <input type="text" name="endDate" placeholder="m/dd/yy h:mm:ss p" id="customStatsRangeEnd" />
+                </fieldset>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Nevermind!</button>
+              <button id="filterTallyStatsCustom" type="button" class="btn btn-lg btn-primary">Filter Stats</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane active loading" id="summary">
+
+        <p><em>Tallying <strong name="tallyName" class="stat"></strong> since <strong class="stat" name="firstTallyDate"></strong>.</em></p>
+
+        <div class="view-period row">
+          <div class="stats-row-title col-xs-5">
+            <h3 style="margin-top:4px">Time range:</h3>
+          </div>
+          <div class="col-xs-7">
+            <div class="btn-group">
+              <a href="#" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span id="viewPeriodShown">All Time</span> <span class="caret"></span>
+              </a>
+              <ul id="viewPeriodPicker" class="dropdown-menu dropdown-menu-right">
+                <li><a href="#" data-time-range="all">All Time</a></li>
+                <li><a href="#" data-time-range="year">Last 12 months</a></li>
+                <li><a href="#" data-time-range="this-year">This Year</a></li>
+                <li><a href="#" data-time-range="month">Last 30 days</a></li>
+                <li><a href="#" data-time-range="this-month">This Month</a></li>
+                <li><a href="#" data-time-range="week">Last 7 days</a></li>
+                <li><a href="#" data-time-range="this-week">This Week</a></li>
+                <li><a href="#" data-time-range="day">Last 24 hours</a></li>
+                <li><a href="#" data-time-range="this-day">Today</a></li>
+                <li><a href="#customStatsRange" data-toggle="modal" data-time-range="custom">Custom</a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- .row -->
+
+        <div class="tally-deets streaks row text-center hidden">
+          <div class="stats-row-title col-xs-3">
+            <h3>Streaks:</h3>
+          </div>
+          <div class="stats-row-stat col-xs-3">
+            <p class="top-level highlight shortest-streak">
+              <span class="stat highlight-title">Shortest</span>
+              <span name="shortStreakNum" class="stat"></span>
+              <span name="shortStreakDate" class="stat highlight-title"></span>
+            </p>
+          </div>
+          <div class="stats-row-stat col-xs-3">
+            <p class="top-level highlight current-streak">
+              <span class="stat highlight-title">Current</span>
+              <span name="curStreakNum" class="stat"></span>
+              <span name="curStreakDate" class="stat highlight-title"></span>
+            </p>
+          </div>
+          <div class="stats-row-stat col-xs-3">
+            <p class="top-level highlight longest-streak">
+              <span class="stat highlight-title">Longest</span>
+              <span name="longStreakNum" class="stat"></span>
+              <span name="longStreakDate" class="stat highlight-title"></span>
+            </p>
+          </div>
+        </div><!-- .streaks -->
+
+        <div class="tally-deets top-level row text-center">
+          <div class="stats-row-title col-xs-3">
+            <h3>Totals for this period:</h3>
+          </div>
+          <div class="stats-row-stat col-xs-3 hidden">
+            <p class="top-level highlight count-stat hidden">
+              <span name="curCount" class="stat"></span>
+              <span class="stat highlight-title">Counts</span>
+            </p>
+          </div>
+          <div class="stats-row-stat col-xs-3 hidden">
+            <p class="top-level highlight num-stat hidden">
+              <span name="numSum" class="stat"></span>
+              <span name="valueName" class="stat highlight-title"></span>
+            </p>
+          </div>
+          <div class="stats-row-stat col-xs-3 hidden">
+            <p class="top-level highlight dur-stat hidden">
+              <span name="durSum" class="stat"></span>
+              <span name="durUnit" class="stat highlight-title"></span>
+            </p>
+          </div>
+        </div><!-- .top-level -->
+
+        <div class="tally-deets counts row text-center hidden">
+          <div class="stats-row-title col-xs-3">
+            <h3>Counts per <span name="goalPeriod" class="stat"></span></h3>
+          </div>
+          <div class="col-xs-9">
+            <table class="tally-stats">
+              <tr>
+                <td name="fewestCounts" class="stat"></td>
+                <td name="avgCountPerPeriod" class="stat"></td>
+                <td name="mostCounts" class="stat"></td>
+              </tr>
+              <tr>
+                <td colspan="3" class="stat-border"></td>
+              </tr>
+              <tr>
+                <th>Fewest</th>
+                <th>Average</th>
+                <th>Most</th>
+              </tr>
+            </table>
+          </div>
+        </div><!-- .row -->
+
+        <div id="tallyDetailCounts" class="chart-row row">
+          <div class="col-xs-12">
+            <div id="tallyDetailCountsChart" class="chart"></div>
+          </div>
+        </div>
+
+        <div id="tallyDetailCountsChartBottomAxis" class="row time-axis-row">
+          <div class="col-sm-12">
+            <div id="tallyDetailCountsChartBottomAxisChart"></div>
+          </div>
+        </div>
+
+        <div class="tally-deets value row text-center hidden">
+          <div class="stats-row-title col-xs-3">
+            <h3><span name="tallyValue" class="stat">Value</span></h3>
+          </div>
+          <div class="col-xs-9">
+            <table class="tally-stats">
+              <tr>
+                <td name="lowestValue" class="stat"></td>
+                <td name="averageValue" class="stat"></td>
+                <td name="highestValue" class="stat"></td>
+              </tr>
+              <tr>
+                <td colspan="3" class="stat-border"></td>
+              </tr>
+              <tr>
+                <th>Lowest</th>
+                <th>Average</th>
+                <th>Highest</th>
+              </tr>
+            </table>
+          </div>
+        </div><!-- .row -->
+
+        <div id="tallyDetailValue" class="chart-row row">
+          <div class="col-md-12">
+            <div id="tallyDetailValueChart" class="chart"></div>
+          </div>
+        </div>
+
+        <div id="tallyDetailValueChartBottomAxis" class="row time-axis-row">
+          <div class="col-sm-12">
+            <div id="tallyDetailValueChartBottomAxisChart"></div>
+          </div>
+        </div>
+
+        <div class="tally-deets duration row text-center hidden">
+          <div class="stats-row-title col-xs-3">
+            <h3>Duration</h3>
+          </div>
+          <div class="col-xs-9">
+            <table class="tally-stats">
+              <tr>
+                <td name="shortestDuration" class="stat"></td>
+                <td name="averageDuration" class="stat"></td>
+                <td name="longestDuration" class="stat"></td>
+              </tr>
+              <tr>
+                <td colspan="3" class="stat-border"></td>
+              </tr>
+              <tr>
+                <th>Shortest</th>
+                <th>Average</th>
+                <th>Longest</th>
+              </tr>
+            </table>
+          </div>
+        </div><!-- .row -->
+
+        <div id="tallyDetailDuration" class="chart-row row">
+          <div class="col-md-12">
+            <div id="tallyDetailDurationChart" class="chart"></div>
+          </div>
+        </div>
+
+        <div id="tallyDetailDurationChartBottomAxis" class="row time-axis-row">
+          <div class="col-sm-12">
+            <div id="tallyDetailDurationChartBottomAxisChart"></div>
+          </div>
+        </div>
+
+        <div id="tallyDetailWordCloud" class="row time-axis-row hidden">
+          <div class="col-sm-12">
+            <h3>Notes Word Count</h3>
+            <div id="wordCloud"></div>
+          </div>
+        </div>
+
+        <p id="linkToCorrelator" class="text-center"><a class="btn btn-lg btn-block btn-primary" href="/app/correlator">For more charting options, check out the Correlator »</a></p>
+
+      </div>
+    </template><!-- #tallySummaryTemplate -->
+
+    <template id="tallyDataTemplate">
+      <div role="tabpanel" class="tab-pane loading" id="data">
+
+        <div class="text-right">
+
+          <!-- <a class="new-count-button btn btn-lg btn-default">+ Blank Row</a> -->
+          <div class="sorts btn-group" role="group">
+            <div class="btn-group">
+              <a href="#" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a class="sort" href="#sort" data-sort-field="startDate" data-sort-dir="desc">Start Date, Descending</a></li>
+                <li><a class="sort" href="#sort" data-sort-field="startDate" data-sort-dir="asc">Start Date, Ascending</a></li>
+                <li><a class="sort" href="#sort" data-sort-field="number" data-sort-dir="desc">Numeric Value, Descending</a></li>
+                <li><a class="sort" href="#sort" data-sort-field="number" data-sort-dir="asc">Numeric Value, Ascending</a></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <a href="#" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                CSV <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a id="exportTally" class="csv" href="#csv" data-field="export">Export</a></li>
+                <li><a class="csv" href="#confirmImportTally" data-field="import" data-toggle="modal">Import</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Confirm Import -->
+
+          <div class="modal fade text-left" id="confirmImportTally" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Import CSV to Tally</h4>
+                </div>
+                <div class="modal-body">
+                  <p>The only data we need in order to create counts in your tally is a start date/time. That said, you can give us any of the following:</p>
+                  <div class="table-scroller">
+                    <table class="table" style="font-size:90%;">
+                      <thead>
+                        <tr>
+                          <th>Field</th>
+                          <th>Format</th>
+                          <th>Examples</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>startDate<br />endDate</th>
+                          <td>Month/Day/Year Hour:Minute:Second:Millisecond am/pm Timezone</td>
+                          <td>
+                            "1/1/70 12:00:00:00 am"<br />
+                            "7/4/76"<br />
+                            "1/20/09 12:05 pm EST"<br />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>number</th>
+                          <td>Any integer or decimal, no quotation marks necessary</td>
+                          <td>-1.23456</td>
+                        </tr>
+                        <tr>
+                          <th>note</th>
+                          <td>Any string up to 2048 characters in length, surrounded by quotation marks</td>
+                          <td>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa? Temporibus praesentium!"</td>
+                        </tr>
+                        <tr>
+                          <th>geoPosition</th>
+                          <td>Anything you can put into Google maps, surrounded by quotation marks</td>
+                          <td>"Clinton, AR"<br />"1600 Pennsylvania Avenue, Washington, DC"<br />"72701"<br />"35.5763941,-92.5308993"</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div><!-- .table-scroller -->
+                  <p>Just make sure your CSV's header row looks like this:</p>
+                  <pre>startDate,endDate,number,note,geoPosition</pre>
+                  <form id="csvImportForm">
+                    <fieldset>
+                      <strong>Grab your CSV:</strong> <input type="file" name="import_csv" accept=".csv" />
+                    </fieldset>
+                    <fieldset class="radios">
+                      <p><strong>When there's already a count with the exact same start date as one in the CSV, what should we do?</strong></p>
+                      <label><input type="radio" name="overrider" value="csv" checked=true /> Use the count that's in the CSV</label><br />
+                      <label><input type="radio" name="overrider" value="tl" /> Use the count that's in TallyLab</label>
+                    </fieldset>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default">Nevermind!</button>
+                  <button type="button" class="btn btn-primary import-csv"><span class="glyphicon glyphicon-export"></span> Import now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- .text-right -->
+
+        <div id="counts">
+        </div><!-- #counts -->
+
+        <div class="text-center">
+
+          <nav class="pages">
+            <a id="prevPage" href="#" alt="Previous Page of Counts" class="btn btn-lg btn-default">
+              <span class="glyphicons glyphicons-chevron-left"></span>
+            </a>
+            <span class="jump-to">
+              Page <input class="form-control" id="curPage" type="number" value="" /> / <span class="total" id="totalPages"></span>
+            </span>
+            <a id="nextPage" href="#" alt="Next Page of Counts" class="btn btn-lg btn-default">
+              <span class="glyphicons glyphicons-chevron-right"></span>
+            </a>
+          </nav>
+
+        </div>
+
+      </div>
+    </template><!-- #tallyDataTemplate -->
+
+    <template id="dataCountTemplate">
+      <div class="count">
+        <div class="index-row">
+          <div class="index-col">
+            <div class="dropdown dark">
+              <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="row options" href="#">
+                <span class="index"></span> <span class="glyphicons glyphicons-chevron-down"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="startDate" class="add-start"><span class="glyphicons glyphicons-play"></span> <span class="add-edit">Add</span> Startstamp</a></li>
+                <li><a href="endDate" class="add-end"><span class="glyphicons glyphicons-stop"></span> <span class="add-edit">Add</span> Endstamp</a></li>
+                <li><a href="number" class="add-value"><span class="glyphicons glyphicons-calculator"></span> <span class="add-edit">Add</span> Numeric Value</a></li>
+                <li><a href="note" class="add-note"><span class="glyphicons glyphicons-notes-2"></span>  <span class="add-edit">Add</span> Note</a></li>
+                <li><a href="geoPosition" class="add-geo"><span class="glyphicon glyphicon-map-marker"></span> <span class="add-edit">Add</span> Location</a></li>
+                <!-- <li class="divider"></li>
+                <li><a href="#" class="disabled add-photo"><span class="glyphicons glyphicons-camera"></span> Take Photo</a></li>
+                <li><a href="#" class="disabled attach-photo"><span class="glyphicon glyphicon-picture"></span> Attach Photo</a></li>
+                <li><a href="#" class="disabled delete-photo"><span class="glyphicon glyphicon-remove"></span> Delete Photo</a></li> -->
+                <li><a href="#" class="delete-count"><span class="glyphicon glyphicon-trash"></span> Delete Count</a></li>
+              </ul>
+            </div><!-- .dropdown -->
+            <div class="active-edits hidden">
+              <button class="cancel btn btn-default btn-sm"><span class="glyphicons glyphicons-remove"></span> Cancel edits</button>
+              <button class="save btn btn-primary btn-sm"><span class="glyphicons glyphicons-floppy-disk"></span> Save edits</button>
+            </div>
+          </div><!-- .tl-col -->
+        </div><!-- .index-row -->
+        <div class="data-row clearfix">
+          <div class="placetime-col">
+            <!-- Can these be type=date or something? NOT AS OF 6/12/17-->
+            <p class="timestamps start">
+              <span class="glyphicons glyphicons-play"></span>
+              <input type="text" name="startDate" placeholder="m/dd/yy h:mm:ss p" />
+            </p>
+            <p class="timestamps end hidden">
+              <span class="glyphicons glyphicons-stop"></span>
+              <input type="text" name="endDate" placeholder="m/dd/yy h:mm:ss p" />
+            </p>
+            <p class="durations hidden">
+              <span class="glyphicons glyphicons-stopwatch"></span>
+              <span name="duration"></span>
+            </p>
+            <p class="values hidden">
+              <span class="glyphicons glyphicons-calculator"></span>
+              <input type="number" name="number" inputmode="numeric" /><span name="value"></span>
+            </p>
+            <p class="place hidden">
+              <a href="http://maps.google.com/?q=" target="_blank"><span class="glyphicon glyphicon-map-marker"></span></a>
+              <input type="text" name="geoPosition" placeholder="Lat+long, city+state, post code – anything goes!" />
+            </p>
+          </div><!-- .col-md-4 -->
+          <div class="extras-col">
+            <p class="notes hidden">
+              <span class="glyphicons glyphicons-notes-2"></span>
+              <textarea name="note" rows="3" cols="30"></textarea>
+            </p>
+            <p class="gallery hidden"></p>
+          </div>
+        </div><!-- .data-row -->
+      </div><!-- .count -->
+    </template>
+
+    <template id="tallySettingsTemplate">
+      <div role="tabpanel" class="tab-pane reveal-scope loading settings" id="settings">
+        <form class="tally-settings">
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12"><strong>Name</strong></div>
+            <div class="col-lg-6 col-md-10 col-sm-12">
+              <input class="form-control" type="text" name="title" value="" data-validation-type="tally-title" data-required="true" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12"><strong>Goal</strong></div>
+            <div class="col-lg-6 col-md-10 col-sm-12 reveal-scope">
+              <select id="tallyGoal" name="goalType" class="form-control" data-reveal="select">
+                <option value="none" data-reveal=".none" data-exclusive="true">None</option>
+                <option value="at-least" data-reveal=".goal" data-exclusive="true">At least</option>
+                <option value="at-most" data-reveal=".goal" data-exclusive="true">At most</option>
+                <option value="exact" data-reveal=".goal" data-exclusive="true">Exactly</option>
+              </select>
+
+              <div class="form-notes">
+                <p class="reveal-target none">e.g. "at least 3 per day" or "at most 10 per week"</p>
+                <fieldset class="reveal-target goal hidden">
+                  <input type="number" class="form-control" id="goalTotal" name="goalTotal" value=0 min=0 />
+                  <label for="goalPeriod" class="control-label text-center">per</label>
+                  <select id="goalPeriod" name="goalPeriod" class="form-control">
+                    <option value="hour">Hour</option>
+                    <option value="day" selected>Day</option>
+                    <option value="week">Week</option>
+                    <option value="month">Month</option>
+                    <option value="year">Year</option>
+                    <option value="life">Lifetime</option>
+                  </select>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12"><strong>Timer</strong></div>
+            <div class="col-lg-6 col-md-10 col-sm-12">
+              <input type="checkbox" id="timer" name="timer" /> <label class="glyph-checkbox" for="timer"><span class="glyphicons"></span> Make this tally a timer</label>
+
+              <div class="form-notes">
+                <p>When you specify that a tally is a timer, your first tap will start the timer and your second tap will stop it.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12"><strong>Value</strong></div>
+            <div class="col-lg-6 col-md-10 col-sm-12 reveal-scope">
+              <input type="checkbox" id="value" data-reveal=".value-label" data-exclusive="true" /> <label class="glyph-checkbox" for="value"><span class="glyphicons"></span> Add numeric value to counts</label>
+              <div class="form-notes">
+                <p class="reveal-target">For each count, we'll prompt you to enter a value. E.g. for "Runs", you can specify how many miles you ran each time.</p>
+                <fieldset class="reveal-target value-label hidden">
+                  <input
+                    type="text" autocapitalize="none" value="" placeholder="Value label"
+                    class="form-control" id="tallyValueLabel" name="value"
+                    data-validation-type="tag" />
+                </fieldset>
+                <p class="reveal-target value-label hidden">The label for your value will appear after each value. E.g. "3.1 miles"</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12"><strong>Tags</strong></div>
+            <div class="col-lg-6 col-md-10 col-sm-12">
+              <textarea id="tallyTags" rows="1" cols="100" name="tags" class="form-control" data-validation-type="tags" ></textarea>
+              <div class="form-notes">
+                <p class="tally_tags">Use tags in collections with lots of tallies, so you can filter them later. E.g. types of food. Separate your list of tags with a comma and a space, e.g. "fruit, citrus"</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12"><strong>Collections</strong></div>
+            <div class="col-lg-6 col-md-10 col-sm-12">
+              <textarea name="collections" rows="1" cols="100" name="tags" class="form-control" data-validation-type="tally-collections" ></textarea>
+              <div class="form-notes">
+                <p>List collections this tally belongs to with a comma and a space, e.g. "Food, Fruit"</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button class="btn btn-default" type="cancel"><span class="glyphicons glyphicons-remove"></span> Cancel edits</button>
+              <button class="btn btn-primary" type="submit"><span class="glyphicons glyphicons-floppy-disk"></span> Save edits</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <button class="btn btn-link" style="padding-left:0;" data-toggle="modal" data-target="#confirmDeleteTally"><span class="glyphicon glyphicon-trash"></span> Delete this tally</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Confirm Delete Tally Modal -->
+        <div class="modal fade" id="confirmDeleteTally" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title"><span class="glyphicon glyphicon-warning-sign"></span> Definitely delete your <span class="title"></span> tally?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Deleting this tally will delete all of its counts and any data you've stored with each count, such as a numeric value, map, note, photo, video, etc.</p>
+                <p>We recommend that you download this tally as a CSV before you delete it.</p>
+              </div>
+              <div class="modal-footer">
+                <button class="pull-left btn btn-lg btn-link download-csv"><span class="glyphicon glyphicon-download"></span> Download CSV</button>
+                <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Nevermind!</button>
+                <button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete this tally now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template><!-- #tallySettingsTemplate -->
+
+    <!-- Your data is not backed up reminder -->
+    <div class="modal fade text-left" id="dataNotBackedUp" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Your Data Is Not Backed Up</h4>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Ignore</button>
+            <a href="/app/settings/billing.html" class="btn btn-primary enable">Enable Remote Backup »</a>
+          </div>
+        </div>
+      </div>
+    </div><!-- #dataNotBackedUp -->
+
+  <!-- App Footer -->
+    <footer class="footer">
+      <div class="wrapper">
+        <p class="copy-p text-muted">© TallyLab, LLC</p>
+        <p class="email-p"><a href="/support" target="_blank">Support</a></p>
+        <div class="tour-p btn-group">
+          <a class="start-tour btn btn-default hidden" href="#">Start Tour</a>
+          <a class="continue-tour btn btn-default hidden" href="#">Continue Tour</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- scripts every lab view needs -->
+    <!-- <script src="/app/js/ipfs.min.js"></script> -->
+    <!-- <script src="/app/js/orbitdb.min.js"></script> -->
+    <script src="/app/js/ipfs-api.min.js"></script>
+    <script src="/app/js/libraries.js"></script>
+    <script src="/app/js/plugins.js"></script>
+    <script src="/app/js/api.js"></script>
+    <script src="/app/js/validation.js"></script>
+    <script src="/app/js/tallylab.js"></script>
+
+    <!-- scripts special to this view -->
+    <script src="/app/js/wizards.js"></script>
+    <script src="/app/js/charts.js"></script>
+    <script src="/app/lab/collection-wizards.js"></script>
+    <script src="/app/lab/sample-data.js"></script>
+    <script src="/app/js/tours.js"></script>
+    <script src="/app/lab/lab.js"></script>
+
+  </body>
+</html>

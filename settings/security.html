@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <base href="/"><script>if ( location.href.indexOf('ipfs') !== -1 ){ var ipfsBase = location.href.match(/([^/]*\/){5}/)[0]; document.getElementsByTagName('base')[0].href = ipfsBase; } </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Your data, your insight.">
+    <meta name="author" content="TallyLab, LLC">
+
+    <title>TallyLab</title>
+
+    <link href="/app/manifest.json" rel="manifest">
+
+    <!-- so much icon -->
+    <link href="/app/favicon.ico" rel="icon">
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+    <link href="/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+    <link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/icon-hires.png" rel="icon" sizes="192x192" />
+    <link href="/icon-normal.png" rel="icon" sizes="128x128" />
+
+    <!-- oh look actual css finally -->
+    <link href="/app/css/fonts.css" rel="stylesheet">
+    <link href="/app/css/plugins.css" rel="stylesheet">
+    <link href="/app/css/tallylab.css" rel="stylesheet">
+  </head>
+
+  <body class="identity">
+
+  <!-- Top Nav -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="wrapper">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/app/lab">
+            <img class="tl-logo" src="/app/img/TallyLabLogo.svg" /><img class="tl-title" src="/app/img/TallyLabTitle.svg" alt="TallyLab" />
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="collectionsNav" class="nav navbar-nav">
+            <li>
+              <a href="/app/lab">Home</a>
+            </li>
+            <li class="collection-nav-list dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="all"><a href="/app/lab/index.html?collection=all-tallies">All Tallies</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/app/correlator">Correlator</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="noteMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-bell"></span></span> <span class="caret"></span></a>
+            </li>
+            <li id="adminMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-cogwheel"></span></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/app/settings">Settings &amp; Utilities</a></li>
+                <li><a href="/app/settings/remote-backup.html">Remote Backup</a></li>
+                <li><a href="/app/settings/billing.html">Billing</a></li>
+                <li><a href="/app/settings/security.html">Security</a></li>
+                <!-- <li><a href="#">Log out</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+  <!-- TallyLab Identity -->
+    <div id="TLidentity" class="accordion-layout wrapper">
+
+      <div class="tlc-toggle tlc-standard hidden">
+
+        <h1>Security</h1>
+
+        <div id="samsungReencrypt" class="hidden alert alert-danger">
+          <p class="list-glyphicons"><span class="glyphicons glyphicons-warning-sign"></span> Because you are using the Samsung Browser, you are not currently able to re-encrypt your database using the options below. We recommend you save your current keys immediately and then switch to using Chrome or Firefox, since that will be your only way to recover backups of your data.</p>
+        </div>
+
+        <div class="user-encryption hidden alert alert-warning">
+          <p class="list-glyphicons"><span class="glyphicons glyphicons-conversation"></span> Your data is currently encrypted using keys generated from your answers to our security questions.</p>
+        </div>
+
+        <div class="tl-encryption hidden alert alert-warning">
+          <p class="list-glyphicons"><span class="glyphicons glyphicons-playing-dices"></span> Your data is currently encrypted using randomly generated keys.</p>
+        </div>
+
+        <div class="backup-encryption hidden alert alert-warning">
+          <p class="list-glyphicons"><span class="glyphicons glyphicons-cloud"></span> Looks like you need to update your security keys in order to restore from a backup.</p>
+          <p>If you have your keyfile, choose "Overwrite current keys with saved keys" below. Otherwise, choose "Generate new keys by answering our questions".</p>
+          <p>In both cases, your current database (presumably a starter) will be re-encrypted using your new keys. Once that process completes, look here for next steps.</p>
+        </div>
+
+        <div class="backup-encryption-success hidden alert alert-warning">
+          <p class="list-glyphicons"><span class="glyphicons glyphicons-cloud"></span> Now that we have the right keys, let's find your last backup:</p>
+          <p class="text-center"><a href="/app/settings/remote-backup.html" class="btn btn-lg btn-primary">Remote Backup &raquo;</a></p>
+        </div>
+
+        <p>TallyLab encrypts your data on your device and it stays encrypted – in transit, in the cloud, anywhere.</p>
+        <p>For more detail on what encryption is, what encryption keys are, how TallyLab handles these things, and why don't we just use passwords like everybody else, <a href="/support/security.html" target="_blank">visit our Support site</a>.</p>
+        <p>Otherwise, proceed with one of these options:<br /></p>
+
+      </div><!-- standard messaging -->
+
+      <div class="tlc-toggle tlc-returning hidden">
+
+        <h1>Returning Tallier, Logging In</h1>
+
+        <p>In order to retrieve your data, we need your previous encryption keys. Please choose one of the following:</p>
+
+        <p>
+          <a href="/app/settings/questions.html#returning" class="btn btn-xl btn-block btn-primary">Reconstitute Keys by Answering Our Security Questions</a>
+          <a href="#confirmImportKey" data-toggle="modal" class="btn btn-xl btn-block btn-primary">Import Keys via TXT File</a>
+          <a href="#confirmPasteKey" data-toggle="modal" class="btn btn-xl btn-block btn-primary">Paste Raw Key Text</a>
+        </p>
+
+      </div><!-- messaging for returning talliers, logging in -->
+
+      <div class="panel-group tlc-toggle tlc-standard hidden" id="accordion" role="tablist" aria-multiselectable="true">
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="generateKeysUser">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseGenerateKeysUser" aria-expanded="false" aria-controls="collapseGenerateKeysUser">
+                <span class="glyphicons glyphicons-conversation"></span> Generate new keys by answering our questions <span class="tl-encryption hidden label label-primary">Recommended</span>
+              </a>
+            </h3>
+          </div>
+          <div id="collapseGenerateKeysUser" class="panel-collapse collapse" role="tabpanel" aria-labelledby="generateKeysUser">
+            <div class="panel-body">
+              <div class="tlc-toggle standard hidden">
+                <p class="tl-encryption hidden">You answer a series of security questions and we generate a new key from your answers. The benefit of this method is that if you need to restore from backup later, you can just answer the same questions again in the same way.<sup><a href="#whyNotAPassword" role="button" data-toggle="collapse" aria-expanded="false">Why not just use password?</a></sup></p>
+                <p class="tl-encryption hidden collapse footnote" id="whyNotAPassword"><span>Servers full of user passwords are vulnerable to hacking, so we'd rather not ever have access to your credentials in the first place. But that means if you forget your creds, we'll have no way of restoring your account for you. If we generate a really long "password" from a series of questions whose answers are unique to you, you'll be more likely to remember it.</span></p>
+                <p class="user-encryption hidden">You can change your answers to the security questions at any time. Note that if you do, you'll lose access to any database backups made using encryption from your previous answers.</p>
+              </div>
+              <p class="text-center"><a href="/app/settings/questions.html" class="btn btn-lg btn-primary"><span class="glyphicons glyphicons-notes-2"></span> Answer Some Questions</a></p>
+            </div>
+          </div>
+        </div><!-- generate keys by answering questions -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="importKeys">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseImportKeys" aria-expanded="false" aria-controls="collapseImportKeys">
+                <span class="glyphicons glyphicons-disk-open"></span> Overwrite current keys with saved keys
+              </a>
+            </h3>
+          </div>
+          <div id="collapseImportKeys" class="panel-collapse collapse" role="tabpanel" aria-labelledby="importKeys">
+            <div class="panel-body">
+              <p>If you previously saved your keys – whether they were generated randomly by us, or from your answers to our security questions – you can import them to overwrite the current encryption keys.</p>
+              <p class="text-center">
+                <a href="#confirmImportKey" data-toggle="modal" class="btn btn-lg btn-primary">Import Key File</a>
+                <a href="#confirmPasteKey" data-toggle="modal" class="btn btn-lg btn-primary">Paste Keys from Email</a>
+              </p>
+            </div>
+          </div>
+        </div><!-- overwrite current keys -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="downloadKeys">
+            <h3 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDownloadKeys" aria-expanded="false" aria-controls="collapseDownloadKeys">
+                <span class="glyphicons glyphicons-disk-save"></span> Save your current keys
+              </a>
+            </h3>
+          </div>
+          <div id="collapseDownloadKeys" class="panel-collapse collapse" role="tabpanel" aria-labelledby="downloadKeys">
+            <div class="panel-body">
+              <p>It's always a good idea to download your current keys as a backup – whether they were generated randomly by us, or from your answers to our security questions.</p>
+              <p class="text-center">
+                <a href="#" class="download-key btn btn-lg btn-primary">Download Keys as TXT File</a>
+                <a href="#" class="email-key btn btn-lg btn-primary">Send Keys in Email</a>
+              </p>
+              <p>Be sure to keep the file somewhere safe, and not just on this device!</p>
+            </div>
+          </div>
+        </div><!-- download current keys -->
+
+      </div><!-- #accordion -->
+
+    </div><!-- #TLidentity -->
+
+    <!-- Successful Key Generation Modal -->
+    <div class="modal fade" id="userKeySuccess" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">One more step</h3>
+          </div>
+          <div class="modal-body">
+            <p>We've successfully generated your new keys from the answers you gave to our questions. Now we need to re-encrypt your database using the new keys. This should only take a few seconds, but <span class="glyphicons glyphicons-warning"></span> <strong>it's important that you don't navigate away from the conversion page</strong> <span class="glyphicons glyphicons-warning"></span> while it's underway.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-default pull-left">Cancel</button>
+            <a href="/app/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Successful Random Key Modal -->
+    <div class="modal fade" id="randomKeySuccess" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">One more step</h3>
+          </div>
+          <div class="modal-body">
+            <p>We've successfully generated your new keys randomly. Now we need to re-encrypt your database using the new keys. This should only take a few seconds, but <span class="glyphicons glyphicons-warning"></span> <strong>it's important that you don't navigate away from the conversion page</strong> <span class="glyphicons glyphicons-warning"></span> while it's underway.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+            <a href="/app/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Successful Key Import Modal -->
+    <div class="modal fade" id="importKeySuccess" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">One more step</h3>
+          </div>
+          <div class="modal-body">
+            <p>We've successfully updated your keys using the file you imported. Now we need to re-encrypt your database using the new keys. This should only take a few seconds, but <span class="glyphicons glyphicons-warning"></span> <strong>it's important that you don't navigate away from the conversion page</strong> <span class="glyphicons glyphicons-warning"></span> while it's underway.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+            <a href="/app/settings/reencrypt.html" class="btn btn-success">Re-Encrypt »</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Import Key -->
+    <div class="modal fade text-left" id="confirmImportKey" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Import Key File</h3>
+          </div>
+          <div class="modal-body">
+            <p>Import a key file that you previously downloaded from TallyLab by tapping "Choose File" or "Browse" below.</p>
+            <form id="importKeyForm">
+              <fieldset class="form-group">
+                <label for="importKey">Grab your file:</label> <input type="file" id="importKey" name="import_key" accept="" />
+              </fieldset>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary import-key"><span class="glyphicon glyphicon-upload-alt"></span> Import now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Paste Key -->
+    <div class="modal fade text-left" id="confirmPasteKey" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Paste Keys</h3>
+          </div>
+          <div class="modal-body">
+            <p>Paste the keys you previously saved below. The string should start out <code>{"public":"</code> and end with <code>..."}</code></p>
+            <form id="pasteKeyForm">
+              <p><textarea id="pastedKeys" class="form-control" rows="3" cols="10"></textarea></p>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary paste-key"><span class="glyphicon glyphicon-upload-alt"></span> Import now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- App Footer -->
+    <footer class="footer">
+      <div class="wrapper">
+        <p class="copy-p text-muted">© TallyLab, LLC</p>
+        <p class="email-p"><a href="/support" target="_blank">Support</a></p>
+        <div class="tour-p btn-group">
+          <a class="start-tour btn btn-default hidden" href="#">Start Tour</a>
+          <a class="continue-tour btn btn-default hidden" href="#">Continue Tour</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- scripts every lab view needs -->
+    <!-- <script src="/app/js/ipfs.min.js"></script> -->
+    <!-- <script src="/app/js/orbitdb.min.js"></script> -->
+    <script src="/app/js/ipfs-api.min.js"></script>
+    <script src="/app/js/libraries.js"></script>
+    <script src="/app/js/plugins.js"></script>
+    <script src="/app/js/api.js"></script>
+    <script src="/app/js/validation.js"></script>
+    <script src="/app/js/tallylab.js"></script>
+
+    <!-- scripts special to this view -->
+    <script src="/app/settings/security.js"></script>
+
+  </body>
+
+</html>

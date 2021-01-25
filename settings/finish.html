@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <base href="/"><script>if ( location.href.indexOf('ipfs') !== -1 ){ var ipfsBase = location.href.match(/([^/]*\/){5}/)[0]; document.getElementsByTagName('base')[0].href = ipfsBase; } </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Your data, your insight.">
+    <meta name="author" content="TallyLab, LLC">
+
+    <title>TallyLab</title>
+
+    <link href="/app/manifest.json" rel="manifest">
+
+    <!-- so much icon -->
+    <link href="/app/favicon.ico" rel="icon">
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+    <link href="/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+    <link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/icon-hires.png" rel="icon" sizes="192x192" />
+    <link href="/icon-normal.png" rel="icon" sizes="128x128" />
+
+    <!-- oh look actual css finally -->
+    <link href="/app/css/fonts.css" rel="stylesheet">
+    <link href="/app/css/plugins.css" rel="stylesheet">
+    <link href="/app/css/tallylab.css" rel="stylesheet">
+  </head>
+
+  <body class="identity">
+
+  <!-- Top Nav -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="wrapper">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/app/lab">
+            <img class="tl-logo" src="/app/img/TallyLabLogo.svg" /><img class="tl-title" src="/app/img/TallyLabTitle.svg" alt="TallyLab" />
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="collectionsNav" class="nav navbar-nav">
+            <li>
+              <a href="/app/lab">Home</a>
+            </li>
+            <li class="collection-nav-list dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="all"><a href="/app/lab/index.html?collection=all-tallies">All Tallies</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/app/correlator">Correlator</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="noteMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-bell"></span></span> <span class="caret"></span></a>
+            </li>
+            <li id="adminMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-cogwheel"></span></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/app/settings">Settings &amp; Utilities</a></li>
+                <li><a href="/app/settings/remote-backup.html">Remote Backup</a></li>
+                <li><a href="/app/settings/billing.html">Billing</a></li>
+                <li><a href="/app/settings/security.html">Security</a></li>
+                <!-- <li><a href="#">Log out</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+  <!-- TallyLab Identity -->
+    <div id="TLidentity" class="accordion-layout wrapper">
+
+      <h2>Finish Setting Up Your Account</h2>
+
+      <p>So far, we've been encrypting your data using keys we generated when you started using the app. If since then you've found the Security page and saved those keys, good on you!</p>
+      <p>If you haven't, that's okay. Our preferred way to keep your data encrypted while also keeping you connected with your data is for you to answer our security questions.</p>
+      <p>It's quick! It's fun! And most impportantly, <strong style="text-transform: uppercase;text-decoration: underline;">it's the only possible way for us to retrieve your data if you lose your device without saving your keys.</strong></p>
+      <p class="text-center"><a class="btn btn-xl btn-primary" href="/app/settings/questions.html#new">Answer Our Security Questions »</a></p>
+      <p>If you don't want to do it right now, that's cool, but we'll keep reminding you periodically until you do. For more on all this, <a href="/support/security.html" target="_blank">visit our Support site</a>.</p>
+      <p class="text-center"><a class="btn btn-default snooze-reminder" href="#">Snooze This Reminder</a></p>
+
+    </div><!-- #TLidentity -->
+
+  <!-- App Footer -->
+    <footer class="footer">
+      <div class="wrapper">
+        <p class="copy-p text-muted">© TallyLab, LLC</p>
+        <p class="email-p"><a href="/support" target="_blank">Support</a></p>
+        <div class="tour-p btn-group">
+          <a class="start-tour btn btn-default hidden" href="#">Start Tour</a>
+          <a class="continue-tour btn btn-default hidden" href="#">Continue Tour</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- scripts every lab view needs -->
+    <!-- <script src="/app/js/ipfs.min.js"></script> -->
+    <!-- <script src="/app/js/orbitdb.min.js"></script> -->
+    <script src="/app/js/ipfs-api.min.js"></script>
+    <script src="/app/js/libraries.js"></script>
+    <script src="/app/js/plugins.js"></script>
+    <script src="/app/js/api.js"></script>
+    <script src="/app/js/validation.js"></script>
+    <script src="/app/js/tallylab.js"></script>
+
+    <!-- scripts special to this view -->
+    <script src="/app/settings/security.js"></script>
+    <script>
+      $(document).ready(function(){
+        
+        // Mark the time
+        localStorage.setItem("securityQreminder",moment().valueOf());
+        
+        // Wire up snooze
+        $('#TLidentity a.snooze-reminder').on('tap',function(e){
+          e.preventDefault();
+          history.go(-1);
+          return false;
+        });
+      });
+    </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <base href="/"><script>if ( location.href.indexOf('ipfs') !== -1 ){ var ipfsBase = location.href.match(/([^/]*\/){5}/)[0]; document.getElementsByTagName('base')[0].href = ipfsBase; } </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Your data, your insight.">
+    <meta name="author" content="TallyLab, LLC">
+
+    <title>TallyLab</title>
+
+    <link href="/app/manifest.json" rel="manifest">
+
+    <!-- so much icon -->
+    <link href="/app/favicon.ico" rel="icon">
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+    <link href="/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+    <link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/icon-hires.png" rel="icon" sizes="192x192" />
+    <link href="/icon-normal.png" rel="icon" sizes="128x128" />
+
+    <!-- oh look actual css finally -->
+    <link href="/app/css/fonts.css" rel="stylesheet">
+    <link href="/app/css/plugins.css" rel="stylesheet">
+    <link href="/app/css/tallylab.css" rel="stylesheet">
+  </head>
+
+  <body class="settings">
+
+  <!-- Top Nav -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="wrapper">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/app/lab">
+            <img class="tl-logo" src="/app/img/TallyLabLogo.svg" /><img class="tl-title" src="/app/img/TallyLabTitle.svg" alt="TallyLab" />
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="collectionsNav" class="nav navbar-nav">
+            <li>
+              <a href="/app/lab">Home</a>
+            </li>
+            <li class="collection-nav-list dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="all"><a href="/app/lab/index.html?collection=all-tallies">All Tallies</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/app/correlator">Correlator</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="noteMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-bell"></span></span> <span class="caret"></span></a>
+            </li>
+            <li id="adminMenuDropdown" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="placeholder"><span class="glyphicons glyphicons-cogwheel"></span></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/app/settings">Settings &amp; Utilities</a></li>
+                <li><a href="/app/settings/remote-backup.html">Remote Backup</a></li>
+                <li><a href="/app/settings/billing.html">Billing</a></li>
+                <li><a href="/app/settings/security.html">Security</a></li>
+                <!-- <li><a href="#">Log out</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+  <!-- TallyLab Settings -->
+    <div id="TLsettings" class="accordion-layout wrapper">
+
+      <h1>Settings &amp; Utilities</h1>
+
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="settings">
+            <h3 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings">
+                <span class="glyphicons glyphicons-cogwheel"></span> Account Settings
+              </a>
+            </h3>
+          </div>
+          <div id="collapseSettings" class="panel-collapse collapse" role="tabpanel" aria-labelledby="settings">
+            <div class="panel-body">
+              <p><em>Coming soon: Default settings for new tallies and collections</em></p>
+            </div>
+          </div>
+        </div><!-- Account Settings -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="exportData">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseExportData" aria-expanded="false" aria-controls="collapseExportData">
+                <span class="glyphicons glyphicons-disk-export"></span> Export Data
+              </a>
+            </h3>
+          </div>
+          <div id="collapseExportData" class="panel-collapse collapse" role="tabpanel" aria-labelledby="exportData">
+            <div class="panel-body">
+              <p>Any tally can be individually exported to .CSV from its detail view:</p>
+              <p class="text-center"><img class="screenshot-inset" src="/app/img/tally-csv.png" style="max-width:100%;" /></p>
+              <div class="hidden non-ios-messaging">
+                <p>The button below will download a zip containing a .CSV for every tally and some settings CSVs for tallies and collections.</p>
+                <p class="text-center"><a id="downloadDb" href="#" class="btn btn-lg btn-primary download-zip">Export everything to .ZIP</a></p>
+              </div>
+            </div>
+          </div>
+        </div><!-- Export Data -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="importData">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseImportData" aria-expanded="false" aria-controls="collapseImportData">
+                <span class="glyphicons glyphicons-disk-import"></span> Import Data
+              </a>
+            </h3>
+          </div>
+          <div id="collapseImportData" class="panel-collapse collapse" role="tabpanel" aria-labelledby="importData">
+            <div class="panel-body">
+              <p>Any tally can have data imported via .CSV from its detail view:</p>
+              <p class="text-center"><img class="screenshot-inset" src="/app/img/tally-csv.png" style="max-width:100%;" /></p>
+              <p>The button below will walk you through creating a .ZIP of data to update several tallies at once <span class="non-ios-messaging">(or re-importing a .ZIP you originally exported from this page)</span>.</p>
+              <p class="text-center"><a id="importDb" href="#confirmImportDb" data-toggle="modal" class="btn btn-lg btn-primary">Upload .ZIP</a></p>
+            </div>
+          </div>
+        </div><!-- Export Data -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="weirdness">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseWeirdness" aria-expanded="false" aria-controls="collapseWeirdness">
+                <span class="glyphicons glyphicons-cat"></span> Things Being Weird?
+              </a>
+            </h3>
+          </div>
+          <div id="collapseWeirdness" class="panel-collapse collapse" role="tabpanel" aria-labelledby="weirdness">
+            <div class="panel-body">
+              <p>TallyLab is in an early beta phase, so there may be times when things go a little haywire – maybe you tried to delete a tally but it's still there, or maybe you started a timer three days ago and you can't get it to stop.</p>
+              <p>Whatever's happening could well be a bug (please report it to us!), or it's possible that a change we made corrupted the data in your database and it needs to be cleaned up. We can't guarantee CleanDB will fix the problem you're having, but it's a good place to start.</p>
+              <p class="hidden non-ios-messaging">We recommend that you download a ZIP of your entire database before running CleanDB. Just in case.</p>
+              <p class="text-center">
+                <a href="#" class="btn btn-lg btn-primary download-zip hidden non-ios-messaging"><span class="glyphicon glyphicon-download"></span> Download .ZIP</a>
+                <a href="#" class="btn btn-lg btn-danger clean-db"><span class="glyphicons glyphicons-cleaning"></span> Run CleanDB</a>
+              </p>
+            </div>
+          </div>
+        </div><!-- Things Being Weird? -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="resetTallyLab">
+            <h3 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseResetTallyLab" aria-expanded="false" aria-controls="collapseResetTallyLab">
+                <span class="glyphicons glyphicons-hurricane"></span> Reset TallyLab
+              </a>
+            </h3>
+          </div>
+          <div id="collapseResetTallyLab" class="panel-collapse collapse" role="tabpanel" aria-labelledby="resetTallyLab">
+            <div class="panel-body">
+              <p>The following actions are quite destructive, so please proceed with caution.<span class="hidden non-ios-messaging"> We recommend you download a .ZIP of your entire database first. Just in case.</span></p>
+              <p class="text-center non-ios-messaging hidden"><a href="#" class="btn btn-lg btn-primary download-zip"><span class="glyphicon glyphicon-download"></span> Download .ZIP</a></p>
+              <p>If you'd like to keep your encryption keys and global settings, you can merely reset your collections, tallies, and counts here:</p>
+              <p class="text-center"><a href="#confirmDeleteTallyData" data-toggle="modal" class="btn btn-lg btn-warning"><span class="glyphicons glyphicons-bin"></span> Delete Tally Data</a></p>
+              <p>Otherwise, if you truly want to blitz it all and start over like none of it ever happened:</p>
+              <p class="text-center"><a href="#confirmResetTallyLab" data-toggle="modal" class="btn btn-lg btn-danger"><span class="glyphicons glyphicons-hurricane"></span> Totally Reset TallyLab</a></p>
+            </div>
+          </div>
+        </div><!-- Reset TallyLab -->
+
+      </div><!-- #accordion -->
+
+    </div><!-- #TLsettings -->
+
+  <!-- App Footer -->
+    <footer class="footer">
+      <div class="wrapper text-right">
+        <p class="pull-left text-muted">© TallyLab, LLC</p>
+        <p><a href="/support" target="_blank">Support</a></p>
+      </div>
+    </footer>
+
+    <!-- Confirm Restore to Backup -->
+    <div class="modal fade text-left" id="confirmDeleteTallyData" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Definitely delete all of your tally data?</h4>
+          </div>
+          <div class="modal-body">
+            <p>This will reset all of your collections, tallies, and counts.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default initial" data-toggle="modal" data-target="#confirmDeleteTallyData">Nevermind!</button>
+            <button type="button" class="btn btn-danger delete-tally-data"><span class="glyphicon glyphicon-bin"></span> Delete tally data now</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- #confirmDeleteTallyData -->
+
+    <!-- Confirm Restore to Backup -->
+    <div class="modal fade text-left" id="confirmResetTallyLab" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Definitely reset TallyLab?</h4>
+          </div>
+          <div class="modal-body">
+            <p>This will overwrite all of your current data.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default initial" data-toggle="modal" data-target="#confirmResetTallyLab">Nevermind!</button>
+            <button type="button" class="btn btn-danger reset-db"><span class="glyphicon glyphicon-hurricane"></span> Reset TallyLab now</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- #confirmResetTallyLab -->
+
+    <!-- Confirm Import DB -->
+    <div class="modal fade text-left" id="confirmImportDb" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Import Database</h4>
+          </div>
+          <div class="modal-body">
+            <p>If you're importing a ZIP you got by exporting your entire database from this page, go ahead and "grab your ZIP" below.</p>
+            <p>Otherwise, you need to <a class="btn btn-lg btn-danger" role="button" data-toggle="collapse" href="#importDBfineprint" aria-expanded="false" aria-controls="importDBfineprint">Read the fine print</a></p>
+            <div class="collapse" id="importDBfineprint">
+              <p>What we're looking for here is a ZIP file containing a CSV for every tally you'd like to create/update. Each CSV should be named after the tally it contains, replacing spaces with dashes. E.g. for a tally named "Chocolate Cake", the CSV should be named "chocolate-cake.csv".</p>
+              <p>For brand new tallies, you'll also need to designate at least one collection for it to belong to. Do so by appending the collection name to the CSV name after dash-dot-dash, e.g. "chocolate-cake-.-dessert.csv" or "chocolate-cake-.-good-food". If the tally doesn't already exist and you don't designate a colleciton, we'll ignore the CSV.</p>
+              <p>In order to create each count in the tally, we at least need a start date/time. That said, you can give us any of the following:</p>
+              <table class="table" style="font-size:90%;">
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Format</th>
+                    <th>Examples</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>startDate<br />endDate</th>
+                    <td>Month/Day/Year Hour:Minute:Second:Millisecond am/pm Timezone</td>
+                    <td>
+                      "1/1/70 12:00:00:00 am"<br />
+                      "7/4/76"<br />
+                      "1/20/09 12:05 pm EST"<br />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>number</th>
+                    <td>Any integer or decimal, no quotation marks necessary</td>
+                    <td>-1.23456</td>
+                  </tr>
+                  <tr>
+                    <th>note</th>
+                    <td>Any string up to 2048 characters in length, surrounded by quotation marks</td>
+                    <td>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa? Temporibus praesentium!"</td>
+                  </tr>
+                  <tr>
+                    <th>geoPosition</th>
+                    <td>Anything you can put into Google maps, surrounded by quotation marks</td>
+                    <td>"Clinton, AR"<br />"1600 Pennsylvania Avenue, Washington, DC"<br />"72701"<br />"35.5763941,-92.5308993"</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Just make sure each tally's CSV has a header row that looks like this:</p>
+              <pre>startDate,endDate,number,note,geoPosition</pre>
+            </div><!-- importDBfineprint -->
+            <form id="dbImportForm">
+              <fieldset>
+                <strong>Grab your ZIP:</strong> <input type="file" name="import_zip" accept=".zip" />
+              </fieldset>
+              <fieldset class="radios">
+                <p><strong>When there's already a count with the exact same start date as one in the CSV, what should we do?</strong></p>
+                <label class="radios"><input type="radio" name="overrider" value="csv" checked=true /> Use the count that's in the CSV</label><br />
+                <label class="radios"><input type="radio" name="overrider" value="tl" /> Use the count that's in TallyLab</label>
+              </fieldset>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default initial" data-toggle="modal" data-target="#confirmImportDb">Nevermind!</button>
+            <button type="button" class="btn btn-primary import-zip initial"><span class="glyphicon glyphicon-export"></span> Import now</button>
+            <button type="button" class="btn btn-primary resulting" data-toggle="modal" data-target="#confirmImportDb"><span class="glyphicon glyphicon-ok"></span> Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- scripts every lab view needs -->
+    <!-- <script src="/app/js/ipfs.min.js"></script> -->
+    <!-- <script src="/app/js/orbitdb.min.js"></script> -->
+    <script src="/app/js/ipfs-api.min.js"></script>
+    <script src="/app/js/libraries.js"></script>
+    <script src="/app/js/plugins.js"></script>
+    <script src="/app/js/api.js"></script>
+    <script src="/app/js/validation.js"></script>
+    <script src="/app/js/tallylab.js"></script>
+
+    <!-- scripts special to this view -->
+    <script src="/app/settings/settings.js"></script>
+    <script>document.addEventListener('sync',loadSettings);</script>
+  </body>
+</html>

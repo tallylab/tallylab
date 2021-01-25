@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="64px" height="58px" viewBox="0 0 64 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Tally Lab</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <path d="M22.7512786,17.6183654 L22.7512789,3.00868634 C22.751279,1.34703476 24.0856121,0 25.7540888,0 L32.494567,0 L38.9617454,0 C40.6149434,0 41.9551251,1.33870166 41.9551251,3.00868634 L41.9551251,17.6183654 L62.5575958,52.3923124 C64.2457448,55.2416601 62.9275052,57.5515128 59.6136298,57.5515128 L4.66104392,57.5515128 C1.3469874,57.5515128 0.0509578989,55.2465394 1.76055419,52.4127034 L22.7512786,17.6183654 Z" fill="#37719E"></path>
+            <g transform="translate(0.000000, 34.834348)" fill="#FFFFFF">
+                <polygon id="Rectangle-1" points="-1.37178688e-14 19.1791186 56.1128603 3.98106829 56.3676975 4.94242246 0.254837214 20.1404728"></polygon>
+                <ellipse id="Oval-1" cx="11.3230769" cy="13.4361055" rx="1.47692308" ry="1.49290061"></ellipse>
+                <ellipse id="Oval-1" cx="27.0769231" cy="15.4266396" rx="1.47692308" ry="1.49290061"></ellipse>
+                <ellipse id="Oval-1" cx="43.8153846" cy="1.49290061" rx="1.47692308" ry="1.49290061"></ellipse>
+                <ellipse id="Oval-1" cx="38.8923077" cy="13.4361055" rx="1.47692308" ry="1.49290061"></ellipse>
+                <ellipse id="Oval-1" cx="16.2461538" cy="11.4455713" rx="1.47692308" ry="1.49290061"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>
