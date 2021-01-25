@@ -14,7 +14,7 @@ var flogs = {
       stepDesc: "newUserIOS test loaded",
       stepExec: function(){
         if ( window.location.href.indexOf('lab') !== -1 ){
-          window.location = '/app/index.html';
+          window.location = '/index.html';
         }
       }
     },
@@ -245,7 +245,7 @@ var flogs = {
       stepDesc: "Navigating to All Tallies shows new tally still exists",
       stepExec: function(){
         if ( window.location.href.indexOf("collection=all-tallies") === -1 ){
-          window.location.href = "/app/lab/index.html?collection=all-tallies";
+          window.location.href = "/lab/index.html?collection=all-tallies";
         } else {
           setTimeout(function(){
             var curFlog = localStorage.getItem('flog');
@@ -334,7 +334,7 @@ var flogs = {
     {
       stepDesc: "existingUser test loaded",
       stepExec: function(){
-        window.location = "/app/lab";
+        window.location = "/lab";
       }
     },
     {
@@ -389,7 +389,7 @@ var flogs = {
       stepDesc: "Returning to home shows new collection is still there",
       stepExec: function(){
         if ( window.location.href.indexOf('meathead') !== -1 ){
-          window.location = "/app/lab";
+          window.location = "/lab";
         }
       }
     },
@@ -402,7 +402,7 @@ var flogs = {
         if ( window.location.hash === "" ){
           var egTally = tl.getTally(0).slug;
           var egCollection = tl.getCollection(tl.getTally(0).collections[0]).slug;
-          window.location.href = '/app/lab/index.html?collection='+egCollection+'&tally='+egTally+'#add';
+          window.location.href = '/lab/index.html?collection='+egCollection+'&tally='+egTally+'#add';
         }
       }
     },
@@ -410,7 +410,7 @@ var flogs = {
       stepDesc: "Make sure auto test is on for the next step. If not already, go to Home.",
       stepExec: function(){
         if ( window.location.href.indexOf('&tally') !== -1 ){
-          window.location.href = '/app/lab';
+          window.location.href = '/lab';
         }
       }
     },
@@ -420,7 +420,7 @@ var flogs = {
         if ( window.location.hash === "" ){
           var egTally = tl.getTally(0).slug;
           var egCollection = tl.getCollection(tl.getTally(0).collections[0]).slug;
-          window.location.href = '/app/lab/index.html?collection='+egCollection+'&tally='+egTally+'#sub';
+          window.location.href = '/lab/index.html?collection='+egCollection+'&tally='+egTally+'#sub';
         }
       }
     },
@@ -431,7 +431,7 @@ var flogs = {
         var egTally = numericTallies[0].slug;
         var egCollection = tl.getCollection(numericTallies[0].collections[0]).slug;
         if ( window.location.href.indexOf('tab=data') === -1 || window.location.href.indexOf(egTally) === -1 ){
-          window.location.href = '/app/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=data';
+          window.location.href = '/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=data';
         } else {
           setTimeout(function(){
             $('#theTally .tally.box .add-count').trigger(press);
@@ -459,7 +459,7 @@ var flogs = {
         var egTally = timerTallies[0].slug;
         var egCollection = tl.getCollection(timerTallies[0].collections[0]).slug;
         if ( window.location.href.indexOf('tab=data') === -1 || window.location.href.indexOf(egTally) === -1 ){
-          window.location.href = '/app/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=data';
+          window.location.href = '/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=data';
         } else {
           setTimeout(function(){
             $('#theTally .tally.box .start-timer').trigger(press);
@@ -480,7 +480,7 @@ var flogs = {
         var egTally = talliesByCount[0].slug;
         var egCollection = tl.getCollection(talliesByCount[0].collections[0]).slug;
         if ( window.location.href.indexOf('tab=data') === -1 || window.location.href.indexOf(egTally) === -1 ){
-          window.location.href = '/app/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=data';
+          window.location.href = '/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=data';
         }
       }
     },
@@ -645,7 +645,7 @@ var flogs = {
         var egTally = goalTally.slug;
         var egCollection = tl.getCollection(goalTally.collections[0]).slug;
         if ( window.location.href.indexOf(egCollection) === -1 || window.location.href.indexOf(egTally) === -1 ){
-          window.location.href = '/app/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=summary';
+          window.location.href = '/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=summary';
         }
       }
     },
@@ -662,7 +662,7 @@ var flogs = {
         var egTally = numberTally.slug;
         var egCollection = tl.getCollection(numberTally.collections[0]).slug;
         if ( window.location.href.indexOf(egCollection) === -1 || window.location.href.indexOf(egTally) === -1 ){
-          window.location.href = '/app/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=summary';
+          window.location.href = '/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=summary';
         }
       }
     },
@@ -676,7 +676,7 @@ var flogs = {
         var egTally = timerTally.slug;
         var egCollection = tl.getCollection(timerTally.collections[0]).slug;
         if ( window.location.href.indexOf(egCollection) === -1 || window.location.href.indexOf(egTally) === -1 ){
-          window.location.href = '/app/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=summary';
+          window.location.href = '/lab/index.html?collection='+egCollection+'&tally='+egTally+'&tab=summary';
         }
       }
     },
@@ -848,7 +848,7 @@ var flogs = {
         if ( window.location.href.indexOf('tally=') === -1 || window.location.href.indexOf('tab=settings') === -1 ){
           var tally = tl.tallies[0];
           var collection = tl.getCollection(tally.collections[0]);
-          window.location = '/app/lab/index.html?tab=settings&collection='+collection.slug+'&tally='+tally.slug;
+          window.location = '/lab/index.html?tab=settings&collection='+collection.slug+'&tally='+tally.slug;
         } else {
           setTimeout(function(){
             $('#settings button[data-target="#confirmDeleteTally"]').trigger(press);
@@ -1010,7 +1010,7 @@ var flogs = {
         } else if ( window.location.href.indexOf('?') === -1 ){
           setTimeout(function(){
             $('html, body').animate({ scrollTop: $('body').height() },2500,function(){
-              window.location = '/app/lab/index.html?collection=all-tallies';
+              window.location = '/lab/index.html?collection=all-tallies';
             });
           },800);
         } else if ( window.location.href.indexOf('all-tallies') !== -1 ){
@@ -1031,7 +1031,7 @@ var flogs = {
           var egTally = _.find(tl.tallies,function(o){ return o.collections.length > 1; });
           var egColl = tl.getCollection(egTally.collections[0]);
           // Go to its settings page
-          window.location = '/app/lab/index.html?tab=settings&collection='+egColl.slug;
+          window.location = '/lab/index.html?tab=settings&collection='+egColl.slug;
         } else if ( window.location.href.indexOf('tab=settings') !== -1 ){
           setTimeout(function(){
             var curColl = URLParser(location.href).getParam('collection');
@@ -1054,7 +1054,7 @@ var flogs = {
         } else if ( window.location.href.indexOf('?') === -1 ){
           setTimeout(function(){
             $('html, body').animate({ scrollTop: $('body').height() },2500,function(){
-              window.location = '/app/lab/index.html?collection=all-tallies';
+              window.location = '/lab/index.html?collection=all-tallies';
             });
           },800);
         }
@@ -1067,7 +1067,7 @@ var flogs = {
           // Find random collection
           var egColl = tl.collections[0];
           // Go to its settings page
-          window.location = '/app/lab/index.html?tab=settings&collection='+egColl.slug;
+          window.location = '/lab/index.html?tab=settings&collection='+egColl.slug;
         } else if ( window.location.href.indexOf('tab=settings') !== -1 ){
           setTimeout(function(){
             var curColl = URLParser(location.href).getParam('collection');
@@ -1090,7 +1090,7 @@ var flogs = {
         } else if ( window.location.href.indexOf('?') === -1 ){
           setTimeout(function(){
             $('html, body').animate({ scrollTop: $('body').height() },2500,function(){
-              window.location = '/app/lab/index.html?collection=all-tallies';
+              window.location = '/lab/index.html?collection=all-tallies';
             });
           },800);
         }
@@ -1100,7 +1100,7 @@ var flogs = {
       stepDesc: "Home: Collection statuses and badges make sense",
       stepExec: function(){
         if ( window.location.href.indexOf('?') !== -1 ){
-          window.location = '/app/lab/index.html';
+          window.location = '/lab/index.html';
         }
       }
     },
@@ -1296,7 +1296,7 @@ var flogs = {
       stepDesc: "settingsUtilities test loaded",
       stepExec: function(){
         if ( window.location.href.indexOf('settings') === -1 ){
-          window.location = '/app/settings/index.html';
+          window.location = '/settings/index.html';
         }
       }
     },

@@ -98,7 +98,7 @@ function buildPage(url){
           $('#initialAdventure .returning-tallier').on(press,function(e){
             e.preventDefault();
             localStorage.setItem('enable_remote_backup','return');
-            location.href = '/app/settings/security.html';
+            location.href = '/settings/security.html';
             return false;
           });
 
@@ -380,7 +380,7 @@ function printCollectionSelection(){
           var newCollection = tl.createCollection(collObj);
 
           setTimeout(function(){
-            window.location.href = '/app/lab/index.html?collection='+newCollection.slug;
+            window.location.href = '/lab/index.html?collection='+newCollection.slug;
           },tl.syncInterval+1);
 
         } // collection name is valid
@@ -534,7 +534,7 @@ function printTallySelection(collection){
         if ( tallyIndex === $('#tallySelection input:checked').length-1 ){
           // ...redirect user to new collection
           setTimeout(function(){
-            window.location.href = '/app/lab/index.html?collection='+newCollection.slug;
+            window.location.href = '/lab/index.html?collection='+newCollection.slug;
           },tl.syncInterval+500);
         }
 
@@ -552,7 +552,7 @@ function printCollectionBox(collection){
   var template = $('#collectionTemplate').html().trim();
   var $clone = $(template);
   $clone
-    .attr('href','/app/lab/index.html?collection='+slug)
+    .attr('href','/lab/index.html?collection='+slug)
     .addClass(slug)
     .attr('data-collection',slug);
   $clone.find('[name="title"]').text(collection.title);
@@ -868,7 +868,7 @@ function printCollectionCharts(){
 
   var collCounts;
 
-  $.getScript("/app/correlator/correlator.js", function( data, textStatus, jqxhr ) {
+  $.getScript("/correlator/correlator.js", function( data, textStatus, jqxhr ) {
     $('#dateRangeStart').val(moment().subtract(3,'months').format('YYYY-MM-DD'));
     $('#dateRangeEnd').val(moment().format('YYYY-MM-DD'));
     collCounts = loadCollectionCharts();
@@ -1028,9 +1028,9 @@ function printTallyBox(tally){
   });
 
   // Create links
-  var dataLink       = '/app/lab/index.html?tab=data&collection='+collectionSlug+'&tally='+tallySlug;
-  var statsLink      = '/app/lab/index.html?tab=summary&collection='+collectionSlug+'&tally='+tallySlug;
-  var settingsLink   = '/app/lab/index.html?tab=settings&collection='+collectionSlug+'&tally='+tallySlug;
+  var dataLink       = '/lab/index.html?tab=data&collection='+collectionSlug+'&tally='+tallySlug;
+  var statsLink      = '/lab/index.html?tab=summary&collection='+collectionSlug+'&tally='+tallySlug;
+  var settingsLink   = '/lab/index.html?tab=settings&collection='+collectionSlug+'&tally='+tallySlug;
   
   // Add links
   $tallyBox.find('.view-data').attr('href',dataLink);
@@ -3230,7 +3230,7 @@ function printTallySettings(tally){
         tl.deleteTally(tally);
 
         setTimeout(function(){
-          window.location.href = '/app/lab/index.html?collection='+collection;
+          window.location.href = '/lab/index.html?collection='+collection;
         },tl.syncInterval+500);
 
         return false;

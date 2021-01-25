@@ -427,13 +427,13 @@ var correlatorTour = {
   "steps": [
     {
       "title": "Welcome to TallyLab's Correlator!",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "orphan": true,
       "content": "The Correlator is where you'll start to find answers to the questions you've been tracking data for.<br /><br />Remember: Correlation is not causation! But it is a great place start."
     },
     {
       "title": "Pick a Tally",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "element": "#addChartForm .choose-tally",
       "placement": "bottom",
       "content": "To start, you'll need to pick a tally to chart. Once you have, click 'Next'.",
@@ -447,7 +447,7 @@ var correlatorTour = {
     },
     {
       "title": "Pick a Data Type",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "element": "#addChartForm .choose-data",
       "placement": "bottom",
       "content": "Next, choose a type of data to chart for this tally. If this tally has counts with numeric values and durations, you'll be able to choose whether to just chart the count itself, or one of the other pieces of data associated with each count.",
@@ -461,7 +461,7 @@ var correlatorTour = {
     },
     {
       "title": "Pick a Chart",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "element": "#addChartForm .choose-chart",
       "placement": "bottom",
       "content": "Next, choose which type of chart you'd like to display the data in. You'll only see options for types of charts that are supported by the types of data in this tally.",
@@ -475,7 +475,7 @@ var correlatorTour = {
     },
     {
       "title": "Add Chart",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "element": "#addChartForm .add-chart",
       "placement": "bottom",
       "content": "Next, click to add the chart.",
@@ -487,7 +487,7 @@ var correlatorTour = {
     },
     {
       "title": "Behold!",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "element": "#topAxis",
       "placement": "top",
       "backdrop": false,
@@ -495,21 +495,21 @@ var correlatorTour = {
     },
     {
       "title": "Time Range Picker",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "element": "#timeRangeForm",
       "placement": "bottom",
       "content": "You'll notice a time range form appear, showing the date range for the new chart. As you add tallies to the chart, you can change these dates to expand or zoom in on a specific time range."
     },
     {
       "title": "Add a chart",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "element": "#addChartForm",
       "placement": "bottom",
       "content": "Adding another chart is just like adding the first. Give a go!"
     },
     {
       "title": "Scan for Correlations",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "element": "#topAxis",
       "placement": "top",
       "backdrop": false,
@@ -517,7 +517,7 @@ var correlatorTour = {
     },
     {
       "title": "Correlator Future",
-      "path": "/app/correlator/",
+      "path": "/correlator/",
       "orphan": true,
       "content": "That's the basic idea. Keep tracking your data, keep comparing it here. And keep checking back for the many updates we have in store for this tool!"
     }
