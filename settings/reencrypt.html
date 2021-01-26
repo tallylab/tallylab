@@ -58,7 +58,7 @@
       var outcome = '/settings/security.html';
 
       // Have to wait for a sync event from api.js before we can actually do anything, but then...
-      document.addEventListener('sync',determinePath);
+      document.addEventListener('sync',reencrypt);
 
       // Check to make sure user arrived here with the correct ingredients to do this
       if ( !localStorage.getItem('userPublic') || !localStorage.getItem('userPrivate') || !localStorage.getItem('userSecurityVersion') ){
@@ -83,132 +83,11 @@
 
       }
 
-      function determinePath(){
-
-        document.removeEventListener('sync',determinePath);
-
-        // Stop syncing
-        clearInterval(setSyncInterval);
-
-        // Delete backup-related local data because it won't be valid anymore
-        localStorage.removeItem('ipns_hash');
-        localStorage.removeItem('last_remote_backup');
-
-        // If user is Stripe customer, check identity
-        if ( localStorage.getItem("stripe.customer_id") ){
-
-          // Make sure they have payment provider specified, since we weren't always doing this
-          localStorage.setItem("payment_provider","Stripe");
-
-          // Decrypt customer ID
-          var customer_id_from_localstorage = tl.encryption.decrypt(localStorage.getItem("stripe.customer_id"));
-
-          // If decryption of customer ID fails
-          if ( !customer_id_from_localstorage ){
-            console.log('Failed to decrypt Stripe customer id. Deleting id.');
-
-            // Remove customer ID
-            localStorage.removeItem("stripe.customer_id");
-
-            // Restart this process
-            determinePath();
-          }
-
-          // If decryption of customer ID succeeds
-          else {
-
-            // Get current verification metadata from Stripe
-            fetch("https://us-east-2a.ipfs.tallylab.com/payment_history/" + customer_id_from_localstorage + "?bartleby=michael")
-              .then(function(res){
-                if ( !res.ok ){
-                  alert('There was an error fetching your payment info from Stripe, so we can\'t re-encrypt. Please try again later.');
-                  window.location.href = "/settings/security.html";
-                } else {
-                  return res.json();
-                }
-              })
-              .then(function(customer){
-
-                // If customer doesn't exist, or decryption of metadata fails
-                if ( !customer.verification || !tl.encryption.decrypt(customer.verification) ){
-                  console.log('Unable to verify customer. Deleting customer id.');
-
-                  // Remove customer ID
-                  localStorage.removeItem("stripe.customer_id");
-
-                  // Restart this process
-                  determinePath();
-                }
-
-                // Otherwise, we're good to proceed
-                else {
-                  reencrypt(customer_id_from_localstorage);
-                }
-
-              });
-
-          }
-
-        }
-
-        // Not a Stripe customer, so we're good to proceed
-        else {
-          reencrypt();
-        }
-
-      }
-
       function reencrypt(decrypted_customer_id){
 
         /* Setup listeners to handle results */
 
-          document.addEventListener('identity-loaded',function(){ // Sent from api.js, indicates we've changed the user's identity
-
-            // If Stripe customer, re-encrypt customer ID & metadata first
-            if ( decrypted_customer_id ){
-
-              // Generate metadata and encrypt
-              var data = "verification=" + tl.encryption.encrypt(Math.random().toString(36).substring(7));
-
-              // Update metadata in Stripe
-              fetch("https://us-east-2a.ipfs.tallylab.com/update_stripe_metadata/" + decrypted_customer_id + "?bartleby=michael",
-                {
-                  method: 'POST',
-                  body: data,
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                })
-                .then(function(res){
-                  if ( !res.ok ){
-
-                    // Redirect user to Billing after re-encrypt so they can see the messaging about what to do if their billing info was lost
-                    outcome = '/settings/billing.html';
-
-                    // Remove customer ID
-                    localStorage.removeItem("stripe.customer_id");
-
-                  } else {
-
-                    // Save newly encrypted customer ID
-                    localStorage.setItem("stripe.customer_id", tl.encryption.encrypt(decrypted_customer_id));
-
-                  }
-
-                  // Regardless of outcome, transfer contents of memory into IndexedDB
-                  tl.syncDb();
-
-                }); // No second promise cause we're not using any data from the first
-
-            } // Stripe customer
-
-            // Not a Stripe customer, so we're good to proceed
-            else {
-
-              // Transfer contents of memory into IndexedDB
-              tl.syncDb();
-
-            }
-
-          });
+          document.addEventListener('identity-loaded',tl.syncDb());
 
           document.addEventListener('sync',cleanUp); // Sent from api.js
 
