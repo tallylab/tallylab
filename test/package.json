@@ -1,0 +1,13 @@
+{
+  "name": "test",
+  "description": "Puppeteer tests for the Tallylab app",
+  "main": "puppeteer.js",
+  "scripts": {
+    "test": "mocha puppeteer.js"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "puppeteer": "^5.5.0"
+  }
+}
