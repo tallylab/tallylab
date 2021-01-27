@@ -8,10 +8,14 @@ Puppeteer tests for the Tallylab app
 
 ## Install
 
-In order to run the tests, you must install the dependencies using npm (`npm install`) and have mocha installed globally (`npm i -g mocha`)
+In order to run the tests, you must install the dependencies using `npm install`.
 
 ## Usage
 
 In order to run the tests you must have an instance of the Tallylab app running at `localhost:8080`.
 
-Once that is running run `npm test`, or `mocha puppeteer.js`
+Once that is running run `npm test`, or `mocha`.
+
+## Contributing
+
+Pull requests and issues are accepted.

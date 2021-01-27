@@ -3,7 +3,7 @@
   "description": "Puppeteer tests for the Tallylab app",
   "main": "puppeteer.js",
   "scripts": {
-    "test": "mocha puppeteer.js"
+    "test": "mocha"
   },
   "dependencies": {
     "chai": "^4.2.0",

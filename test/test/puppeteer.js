@@ -62,7 +62,6 @@ describe('Test new user', async () => {
         await actions.installSelectedTallies(page)
         //make sure that only the talles we chose were selected
         //this give us a list of classLists that each of the tallies have
-        await page.screenshot({path: "test.png"})
         let tallies = await page.$$eval('.tally', tallies => tallies.filter(tally => !tally.classList.contains('new')).map(tally => Array.from(tally.classList)))
 
         //we can ensure that they match by checking the length
