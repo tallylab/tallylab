@@ -12,7 +12,7 @@ In order to run the tests, you must install the dependencies using `npm install`
 
 ## Usage
 
-In order to run the tests you must have an instance of the Tallylab app running at `localhost:8080`.
+In order to run the tests you must have an instance of the Tallylab app running at `localhost:8080`. This instance should not be serving `/test`, because the testing process may modify files in the folder and cause unnecessary reloads.
 
 Once that is running run `npm test`, or `mocha`.
 

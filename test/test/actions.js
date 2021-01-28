@@ -1,4 +1,3 @@
-
 /**
  * This function waits until the page is loaded.
  * This works by waiting until the loading image is hidden.
