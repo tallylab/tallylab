@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "chai": "^4.2.0",
+    "live-server": "^1.2.1",
     "mocha": "^8.2.1",
     "puppeteer": "^5.5.0"
   }
