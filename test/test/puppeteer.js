@@ -1,6 +1,11 @@
 const puppeteer = require('puppeteer');
 const { expect } = require('chai');
-const actions = require('./actions')
+const fs = require('fs')
+const actions = require('./actions');
+const puppeteerConfig = {
+    headless: true,
+    userDataDir: './userData',
+}
 
 describe('Test new user', async () => {
     let browser;
@@ -11,7 +16,11 @@ describe('Test new user', async () => {
 
 
     before(async function () {
-        browser = await puppeteer.launch()
+        //make sure that the user data directory is cleared. Otherwise we will appear as a returning user
+        if (puppeteerConfig.userDataDir) {
+            fs.rmdirSync(puppeteerConfig.userDataDir, { recursive: true })
+        }
+        browser = await puppeteer.launch(puppeteerConfig)
         page = await browser.newPage()
     })
 
