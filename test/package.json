@@ -3,10 +3,12 @@
   "description": "Puppeteer tests for the Tallylab app",
   "main": "puppeteer.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "live-server --no-browser --ignore=test ./.."
   },
   "dependencies": {
     "chai": "^4.2.0",
+    "live-server": "^1.2.1",
     "mocha": "^8.2.1",
     "puppeteer": "^5.5.0"
   }
