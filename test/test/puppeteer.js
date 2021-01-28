@@ -2,6 +2,16 @@ const puppeteer = require('puppeteer');
 const { expect } = require('chai');
 const fs = require('fs')
 const actions = require('./actions');
+const liveServer = require('live-server')
+const serverConfig = {
+    port: 8080,
+    host: "127.0.0.1",
+    root: "./..",
+    open: false,
+    ignore: 'test',
+    wait: 0,
+    logLevel: 2, // 0 = errors only, 1 = some, 2 = lots
+}
 const puppeteerConfig = {
     headless: true,
     userDataDir: './userData',
@@ -20,6 +30,8 @@ describe('Test new user', async () => {
         if (puppeteerConfig.userDataDir) {
             fs.rmdirSync(puppeteerConfig.userDataDir, { recursive: true })
         }
+        //start the server
+        liveServer.start(serverConfig)
         browser = await puppeteer.launch(puppeteerConfig)
         page = await browser.newPage()
     })
@@ -27,6 +39,7 @@ describe('Test new user', async () => {
     after(async () => {
         await page.close()
         await browser.close()
+        liveServer.shutdown()
     })
 
     it('Load Home Page', async () => {
