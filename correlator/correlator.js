@@ -161,13 +161,14 @@ function addChartToCorrelator(tally,chartData,chartId){
 
 } // addChartToCorrelator
 
-function loadCorrelator() {
+async function loadCorrelator() {
 
   var $addChartForm = $('#addChartForm'),
-      $chooseTally  = $addChartForm.find('.choose-tally'),
-      $chooseData   = $addChartForm.find('.choose-data'),
-      $chooseChart  = $addChartForm.find('.choose-chart'),
-      $addChartBtn  = $addChartForm.find('.add-chart');
+    $chooseTally = $addChartForm.find('.choose-tally'),
+    $chooseData = $addChartForm.find('.choose-data'),
+    $chooseChart = $addChartForm.find('.choose-chart'),
+    $addChartBtn = $addChartForm.find('.add-chart'),
+    $addChartAndPattern = $addChartForm.find('.add-chart-and-pattern');
 
   // Add all tallies to select box
   var tallyList = _.sortBy(tl.tallies,['title']);
@@ -177,6 +178,8 @@ function loadCorrelator() {
       $chooseTally.append(option);
     }
   });
+
+  const patternFinder = await loadModel();
 
   /* Conditionally show/hide form elements */
 
@@ -236,7 +239,8 @@ function loadCorrelator() {
       // Otherwise we're back to square one
       else {
         $addChartForm.find('select:not(.choose-tally)').addClass('hidden');
-        $addChartBtn.prop('disabled',true);
+        $addChartBtn.prop('disabled', true);
+        $addChartAndPattern.prop('disabled', true);
       }
 
     }); // choose-tally onchange
@@ -258,7 +262,8 @@ function loadCorrelator() {
 
       if ( $chooseData.find('option:selected').val() === "none" ){
         $chooseChart.addClass('hidden');
-        $addChartBtn.prop('disabled',true);
+        $addChartBtn.prop('disabled', true);
+        $addChartAndPattern.prop('disabled', true);
       } else {
         var chartType = $chooseData.find('option:selected').val();
         _.forEach(allowedCharts[chartType],function(chart,i){
@@ -274,14 +279,16 @@ function loadCorrelator() {
     $chooseChart.on('change',function(){
 
       if ( $chooseChart.find('option:selected').val() === "none" ){
-        $addChartBtn.prop('disabled',true);
+        $addChartBtn.prop('disabled', true);
+        $addChartAndPattern.prop('disabled', true);
       } else {
-        $addChartBtn.prop('disabled',false);
+        $addChartBtn.prop('disabled', false);
+        $addChartAndPattern.prop('disabled', false);
       }
 
     });
 
-  $addChartForm.on('submit',function(e){
+  $addChartForm.on('submit', function (e) {
     e.preventDefault();
 
     // Get tally
@@ -313,9 +320,23 @@ function loadCorrelator() {
 
     drawCorrelator();
 
+    //search for pattern if button clicked
+    if (e.originalEvent.submitter.classList.contains('add-chart-and-pattern')) {
+      let count = lastN(countPerDay(tally.counts), 31);
+      findPattern(patternFinder, count).array().then(a => {
+        const prediction = a[0]
+        let classification = PATTERNS[prediction.indexOf(Math.max(...prediction))]
+        let description = $(`<div id=classification class="vertical-align col-md-2 col-sm-2"></div>`)
+        $(`#${newChartId}`).parent().after(description)
+        description.append(`<h3>Pattern Finding</h3>`)
+        description.append(`<p> It seems like the change in this tally over time is ${classification}`)
+      })
+    }
+
     // Reset "add chart" form
     $addChartForm.find('form')[0].reset();
-    $addChartBtn.prop('disabled',true);
+    $addChartBtn.prop('disabled', true);
+    $addChartAndPattern.prop('disabled', true);
     $addChartForm.find('form select:not(.choose-tally)').addClass('hidden');
 
     return false;
